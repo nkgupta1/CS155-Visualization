@@ -1,11 +1,35 @@
 #!/usr/bin/env python3
 
+def create_dict():
+    '''
+    Creates a dictionary between id and movie title.
+    '''
+    dct = {}
+    with open('../data/movies.txt','r',encoding='latin1') as f:
+        for line in f:
+            lst = line.split()
+
+            if len(lst) == 0:
+                continue
+
+            idx = int(lst[0])
+            
+            movie = ' '.join(lst[1:]).rsplit(')')[:-1]
+            movie = ') '.join(movie) + ')'
+
+            if movie[0] == '"':
+                movie += '"'
+
+            dct[idx] = movie
+
+    return dct
+
 def import_data():
     '''
     Imports entire dataset.
     '''
 
-    ranks = [[] for i in range(1682)]
+    ranks = [(i+1, []) for i in range(1682)]
     with open('../data/data.txt','r') as f:
         for line in f:
             lst = line.split()
@@ -16,7 +40,7 @@ def import_data():
             movie = int(lst[1]) - 1 # Zero-indexing
             rating = int(lst[2])
 
-            ranks[movie].append(rating)
+            ranks[movie][1].append(rating)
 
     return ranks
 
@@ -64,7 +88,7 @@ def import_genres(genres):
                 if line[i] == '1':
                     g_list[movie][i] = 1
 
-    ranks = [[] for i in range(1682)]
+    ranks = [(i+1, []) for i in range(1682)]
     with open('../data/data.txt','r') as f:
         for line in f:
             lst = line.split()
@@ -82,6 +106,7 @@ def import_genres(genres):
             if cont == 1:
                 continue
 
-            ranks[movie].append(rating)
+            ranks[movie][1].append(rating)
 
+    ranks = [x for x in ranks if len(x[1]) > 0]
     return ranks
