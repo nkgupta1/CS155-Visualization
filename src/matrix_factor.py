@@ -2,7 +2,11 @@
 # creates and factors a matrix
 
 import numpy as np
-from prob2utils import train_model
+from prob2utils import train_model, get_err
+
+M = 943     # number of users
+N = 1682    # number of movies
+K = 20      # number of latent factors
 
 def create_Y():
     '''
@@ -37,28 +41,62 @@ def create_Y():
 
     return Y
 
+def cross_validate(Y_train, Y_test, regs, etas):
+    '''
+    cross validates the model, varying regularization strength and step size.
+    '''
+    print('training size =', len(Y_train))
+    print('testing size  =', len(Y_test))
+    print()
+
+    for reg in regs:
+        for eta in etas:
+            U, V, errIn = train(Y_train, reg, eta, zero_mean=False, save=False)
+            errIn = get_err(U, V, Y_train)
+            errOut = get_err(U, V, Y_test)
+            output_str = ''
+            output_str = '{}, errOut = {:.6f}'.format(output_str, errOut)
+            output_str = '{}, reg = {:.5f}'.format(output_str, reg)
+            output_str = '{}, eta = {:.4f}'.format(output_str, eta)
+            output_str = '{}, errIn = {:.6f}'.format(output_str, errIn)
+            print(output_str)
+
+def train(Y, reg, eta, zero_mean=True, save=True):
+    '''
+    learns U and V
+    '''
+
+    (U, V, err) = train_model(M, N, K, eta, reg, Y)
+
+    if zero_mean:
+        V = V - V.mean(axis=0)
+
+    A, S, B = np.linalg.svd(V, full_matrices=False)
+
+    if save:
+        np.save('models/{:6.5f}-U-{:.5f}-{:.4f}'.format(err, reg, eta), U)
+        np.save('models/{:6.5f}-V-{:.5f}-{:.4f}'.format(err, reg, eta), V)
+        np.save('models/{:6.5f}-A-{:.5f}-{:.4f}'.format(err, reg, eta), A[:, :2])
+
+    return U, V, err
 
 if __name__ == '__main__':
-
-    M = 943     # number of users
-    N = 1682    # number of movies
-    K = 20      # number of latent factors
 
     eta = .01   # step size
     reg = .1    # regularization strength
 
+    etas = [0.01, 0.02, 0.009, 0.005]
+    regs = [0.1, 0.01]
+
     Y = create_Y()
+    num_samples = len(Y)
+    # Y_train = Y[:2*num_samples//3]
+    # Y_test  = Y[2*num_samples//3:]
 
-    print('training...\n')
-    (U, V, err) = train_model(M, N, K, eta, reg, Y)
-    print('done training...\n')
+    Y_train = Y[num_samples//3:]
+    Y_test  = Y[:num_samples//3]
 
-    V_zero_mean = V - V.mean(axis=0)
+    # train(Y, reg, eta)
+    cross_validate(Y_train, Y_test, regs, etas)
 
-    print('calculating svd...')
-    A, S, B = np.linalg.svd(V_zero_mean, full_matrices=False)
-    print('done calculating svd...')
-
-    np.save('models/{:6.5f}-U-{:.4f}-{:.4f}'.format(err, reg, eta), U)
-    np.save('models/{:6.5f}-V-{:.4f}-{:.4f}'.format(err, reg, eta), V_zero_mean)
-    np.save('models/{:6.5f}-A-{:.4f}-{:.4f}'.format(err, reg, eta), A[:, :2])
+    
