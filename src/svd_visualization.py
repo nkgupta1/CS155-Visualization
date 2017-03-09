@@ -11,10 +11,14 @@ movie_ratings = import_data()  # movies[movie_id, ratings[rating]]
 
 def twoD_viz(title, movie_ids, xy_coords, rect, dpi=100, buf=0.1, annotate=True):
     '''
+    param: title: title for plot as well as save-name
     param: movie_ids: 1d-list or numpy array of [movie_ids]
     param: xy_coords: 2d numpy array of [movie_x, movie_y] corresponding to 
     movie_id in movie_ids
-    return: none: 
+    param: rect: rectangle bounding all possible xy coordinates in V 
+    given by [minimum X, maximum X, minimum Y, maximum Y]
+    return: none: plots points on a scatter plot and annotates them with 
+    movie names before saving them into /graphics with the name param:title
     '''
     # define rect according according to points in xy_coords
     if rect is None:
@@ -61,6 +65,9 @@ def viz_tasks(V):
     '''
     param: V: 2-d numpy matrix as defined in guide as "V", V.shape = [2, n],
     V = movie_id[x, y]
+    return: none: find the movie ids belonging to each group as defined in 
+    the guide and their coordinates in param:V. plots, annotates, and saves 
+    the points using twoD_viz().
     '''
     movie_ids = movie_names.keys()
     # 10 random movies
@@ -82,8 +89,10 @@ def viz_tasks(V):
         for genre in [import_genres(['Animation']), import_genres(['Sci-Fi']), 
         import_genres(['War'])]]
 
+    # rectangle bounding all possible xy coordinates in V
     rect = [V[:, 0].min(), V[:, 0].max(), V[:, 1].min(), V[:, 1].max()]
 
+    # create and save plots using movie ids and coordinates from V
     twoD_viz('All Movies', movie_ids, V, rect, annotate=False)
     twoD_viz('10 Random Films', rand_movies, V[rand_movies - 1], rect)
     twoD_viz('10 Most Popular Films', most_popular, V[most_popular - 1], rect)
@@ -97,5 +106,3 @@ if __name__ == '__main__':
     A = np.load('models/0.30616-A-0.1000-0.0100.npy')
     V = np.load('models/0.30616-V-0.1000-0.0100.npy')
     viz_tasks(np.matmul(A.transpose(), V).transpose())
-
-
