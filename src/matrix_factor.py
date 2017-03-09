@@ -53,10 +53,12 @@ if __name__ == '__main__':
     (U, V, err) = train_model(M, N, K, eta, reg, Y)
     print('done training...\n')
 
+    V_zero_mean = V - V.mean(axis=0)
+
     print('calculating svd...')
-    A, S, B = np.linalg.svd(V, full_matrices=False)
+    A, S, B = np.linalg.svd(V_zero_mean, full_matrices=False)
     print('done calculating svd...')
 
     np.save('models/{:6.5f}-U-{:.4f}-{:.4f}'.format(err, reg, eta), U)
-    np.save('models/{:6.5f}-V-{:.4f}-{:.4f}'.format(err, reg, eta), V)
+    np.save('models/{:6.5f}-V-{:.4f}-{:.4f}'.format(err, reg, eta), V_zero_mean)
     np.save('models/{:6.5f}-A-{:.4f}-{:.4f}'.format(err, reg, eta), A[:, :2])
