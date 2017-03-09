@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+M = 943     # number of users
+N = 1682    # number of movies
+
 def create_dict():
     '''
     Creates a dictionary between id and movie title.
@@ -27,9 +30,11 @@ def create_dict():
 def import_data():
     '''
     Imports entire dataset.
+    
+    Returns a list of tuples with movie id and ratings.
     '''
 
-    ranks = [(i+1, []) for i in range(1682)]
+    ranks = [(i+1, []) for i in range(M)]
     with open('../data/data.txt','r') as f:
         for line in f:
             lst = line.split()
@@ -73,7 +78,9 @@ def import_genres(genres):
         'Western' : 18
     }
 
-    g_list = [[0 for i in range(19)] for j in range(1682)]
+    num_genres = len(dct)
+
+    g_list = [[0 for i in range(num_genres)] for j in range(M)]
     with open('../data/movies.txt','r',encoding='latin1') as f:
         for line in f:
             lst = line.split()
@@ -84,11 +91,11 @@ def import_genres(genres):
             movie = int(lst[0]) - 1
 
             line = ''.join(lst[1:]).rsplit(')')[-1] # Remove everything before catagories
-            for i in range(19):
+            for i in range(num_genres):
                 if line[i] == '1':
                     g_list[movie][i] = 1
 
-    ranks = [(i+1, []) for i in range(1682)]
+    ranks = [(i+1, []) for i in range(M)]
     with open('../data/data.txt','r') as f:
         for line in f:
             lst = line.split()
