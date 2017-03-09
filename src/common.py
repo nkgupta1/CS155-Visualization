@@ -52,7 +52,6 @@ def import_data():
 def import_genres(genres):
     '''
     Imports data for a specific genre of movie.
-
     Genre names mapped to location in data.
     '''
 
@@ -78,9 +77,7 @@ def import_genres(genres):
         'Western' : 18
     }
 
-    num_genres = len(dct)
-
-    g_list = [[0 for i in range(num_genres)] for j in range(N)]
+    g_list = [[0 for i in range(19)] for j in range(1682)]
     with open('../data/movies.txt','r',encoding='latin1') as f:
         for line in f:
             lst = line.split()
@@ -91,11 +88,11 @@ def import_genres(genres):
             movie = int(lst[0]) - 1
 
             line = ''.join(lst[1:]).rsplit(')')[-1] # Remove everything before catagories
-            for i in range(num_genres):
+            for i in range(19):
                 if line[i] == '1':
                     g_list[movie][i] = 1
 
-    ranks = [(i+1, []) for i in range(M)]
+    ranks = [(i+1, []) for i in range(1682)]
     with open('../data/data.txt','r') as f:
         for line in f:
             lst = line.split()
