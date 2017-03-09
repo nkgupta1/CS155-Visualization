@@ -34,7 +34,7 @@ def import_data():
     Returns a list of tuples with movie id and ratings.
     '''
 
-    ranks = [(i+1, []) for i in range(M)]
+    ranks = [(i+1, []) for i in range(N)]
     with open('../data/data.txt','r') as f:
         for line in f:
             lst = line.split()
@@ -80,7 +80,7 @@ def import_genres(genres):
 
     num_genres = len(dct)
 
-    g_list = [[0 for i in range(num_genres)] for j in range(M)]
+    g_list = [[0 for i in range(num_genres)] for j in range(N)]
     with open('../data/movies.txt','r',encoding='latin1') as f:
         for line in f:
             lst = line.split()
