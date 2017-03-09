@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Solution set for CS 155 Set 6, 2016/2017
 # Authors: Fabian Boemer, Sid Murching, Suraj Nair
 
@@ -22,13 +23,13 @@ def train_model(M, N, K, eta, reg, Y, eps=0.0001, max_epochs=300):
     size = Y.shape[0]
     delta = None
     print("training reg = %s, k = %s, M = %s, N = %s"%(reg, K, M, N))
-    indices = range(size)    
+    indices = list(range(size))
     for epoch in range(max_epochs):
         # Run an epoch of SGD
         before_E_in = get_err(U, V, Y)
         np.random.shuffle(indices)
         for ind in indices:
-            (i,j, Yij) = Y[ind]
+            (i, j, Yij) = Y[ind]
             # Update U[i], V[j]
             U[i-1] = grad_U(U[i-1], Yij, V[:,j-1], reg, eta)
             V[:,j-1] = grad_V(V[:,j-1], Yij, U[i-1], reg, eta);
