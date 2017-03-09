@@ -52,10 +52,9 @@ def import_data():
 def import_genres(genres):
     '''
     Imports data for a specific genre of movie.
-
-    Genre names mapped to location in data.
     '''
 
+    # Genre names mapped to location in data.
     dct = {
         'Unknown' : 0,
         'Action' : 1,
