@@ -42,12 +42,21 @@ if __name__ == '__main__':
 
     M = 943     # number of users
     N = 1682    # number of movies
-
     K = 20      # number of latent factors
-    eta = .001     # step size
+
+    eta = .01   # step size
     reg = 10    # regularization strength
 
     Y = create_Y()
-    print(Y.shape)
 
+    print('training...\n')
     (U, V, err) = train_model(M, N, K, eta, reg, Y)
+    print('done training...\n')
+
+    print('calculating svd...')
+    A, S, B = np.linalg.svd(V, full_matrices=False)
+    print('done calculating svd...')
+
+    np.save('models/{:6.5f}-U-{:.4f}-{:.4f}'.format(err, reg, eta), U)
+    np.save('models/{:6.5f}-V-{:.4f}-{:.4f}'.format(err, reg, eta), V)
+    np.save('models/{:6.5f}-A-{:.4f}-{:.4f}'.format(err, reg, eta), A[:, :2])
