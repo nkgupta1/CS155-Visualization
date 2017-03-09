@@ -92,7 +92,11 @@ def import_genres(genres):
                 if line[i] == '1':
                     g_list[movie][i] = 1
 
+<<<<<<< HEAD
     ranks = [(i+1, []) for i in range(1682)]
+=======
+    ranks = [(i+1, []) for i in range(N)]
+>>>>>>> 0a8ef59623f25a2625352fce5373d50ffa8563b5
     with open('../data/data.txt','r') as f:
         for line in f:
             lst = line.split()
