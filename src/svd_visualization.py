@@ -9,7 +9,7 @@ movie_names = create_dict()  # dict[movie_id: movie_name]
 movie_ratings = import_data()  # movies[movie_id, ratings[rating]]
 
 
-def twoD_viz(title, movie_ids, xy_coords, rect=None, dpi=100, off_set=0.04):
+def twoD_viz(title, movie_ids, xy_coords, rect, dpi=100, buf=0.1, annotate=True):
     '''
     param: movie_ids: 1d-list or numpy array of [movie_ids]
     param: xy_coords: 2d numpy array of [movie_x, movie_y] corresponding to 
@@ -20,12 +20,17 @@ def twoD_viz(title, movie_ids, xy_coords, rect=None, dpi=100, off_set=0.04):
     if rect is None:
         rect = np.array([xy_coords[:, 0].min(), xy_coords[:, 0].max(), 
             xy_coords[:, 1].min(), xy_coords[:, 1].max()])
-        print(rect)
+        width = rect[1] - rect[0]
+        height = rect[3] - rect[2]
+        rect[0] -= width * buf
+        rect[1] += width * buf
+        rect[2] -= height * buf
+        rect[3] += height * buf
 
     # create plot dimensions, resolution, and axis ranges
     plt.clf()
-    plt.title(title)
     fig, ax = plt.subplots(figsize=(10., 10.), dpi=dpi)
+    ax.set_title(title, fontdict={'fontsize': 25})
     ax.axis(rect)
 
     # get relative sizes and ranges of drawing window
@@ -40,15 +45,11 @@ def twoD_viz(title, movie_ids, xy_coords, rect=None, dpi=100, off_set=0.04):
     ax.spines['right'].set_visible(False)
 
     # draw annotations next to points with coordinate offsets
-    for i, movie in enumerate(movie_ids):
-        label_position = xy_coords[i]
-        # dynamic offsets
-        #label_position[0] += np.sign(xy_coords[i, 0] - x_mid) * off_set * x_interval
-        #label_position[1] += np.sign(xy_coords[i, 1] - y_mid) * off_set * y_interval
-        # static offsets
-        #label_position[0] -= .05 * x_interval
-        label_position[1] -= .03 * y_interval
-        ax.annotate(movie_names[movie], xy_coords[i], xytext=label_position)
+    if annotate:
+        for i, movie in enumerate(movie_ids):
+            label_position = xy_coords[i]
+            label_position[1] += .01 * y_interval
+            ax.annotate(movie_names[movie], xy_coords[i], xytext=label_position)
 
     # save plot
     print('saving...', title)
@@ -81,11 +82,15 @@ def viz_tasks(V):
         for genre in [import_genres(['Animation']), import_genres(['Sci-Fi']), 
         import_genres(['War'])]]
 
-    #rect = [V[:, 0].min(), V[:, 0].max(), V[:, 1].min(), V[:, 1].max()]
-    twoD_viz('10 Random Films', rand_movies, V[rand_movies - 1])
-    twoD_viz('10 Most Popular Films', most_popular, V[most_popular - 1])
-    twoD_viz('10 Most Rated Films', best_movies, V[best_movies - 1])
-    twoD_viz('Top 10 Animation Films', animation, V[animation - 1])
+    rect = [V[:, 0].min(), V[:, 0].max(), V[:, 1].min(), V[:, 1].max()]
+
+    twoD_viz('All Movies', movie_ids, V, rect, annotate=False)
+    twoD_viz('10 Random Films', rand_movies, V[rand_movies - 1], rect)
+    twoD_viz('10 Most Popular Films', most_popular, V[most_popular - 1], rect)
+    twoD_viz('10 Most Rated Films', best_movies, V[best_movies - 1], rect)
+    twoD_viz('Top 10 Genre: Animation Films', animation, V[animation - 1], rect)
+    twoD_viz('Top 10 Genre: Sci-Fi Films', scifi, V[scifi - 1], rect)
+    twoD_viz('Top 10 Genre: War Films', war, V[war - 1], rect)
     print('done!')
 
 if __name__ == '__main__':
