@@ -45,7 +45,7 @@ if __name__ == '__main__':
     K = 20      # number of latent factors
 
     eta = .01   # step size
-    reg = 10    # regularization strength
+    reg = .1    # regularization strength
 
     Y = create_Y()
 
