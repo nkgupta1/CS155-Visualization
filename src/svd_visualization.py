@@ -125,7 +125,7 @@ def viz_comparison(title, xy_coords_lst, colors, rect, names=None, dpi=300,
                 ax.scatter(xy_coords[:, 0], xy_coords[:, 1], color=colors[i])
     
     if names is not None:
-        plt.legend(loc='center left')
+        plt.legend(loc='best')
     # remove top and right axis-lines for aesthetic purposes
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
@@ -203,6 +203,22 @@ def viz_tasks(V):
     # rectangle bounding all possible xy coordinates in V
     rect = [V[:, 0].min(), V[:, 0].max(), V[:, 1].min(), V[:, 1].max()]
 
+
+    # Plot specific/defined series and time ranges
+    # star-trek
+    startrek = np.array([222, 227, 228, 229, 230, 380, 449, 450])
+    twoD_viz('Series: Star Trek', startrek, V[startrek - 1], rect)
+    # batman
+    batman = np.array([29, 231, 254, 403])
+    twoD_viz('Series: Batman', batman, V[batman - 1], rect)
+    # year: 1998
+    interval = np.array([314, 315, 329, 348, 349, 350, 351, 353, 354, 355, 362, 
+        691, 752, 885, 902, 905, 907, 908, 909, 911, 912, 914, 915, 916, 917, 
+        918, 1105, 1106, 1127, 1191, 1234, 1313, 1316, 1395, 1420, 1429, 1432, 
+        1433, 1483, 1525, 1527, 1592, 1594, 1602, 1607, 1624, 1645, 1650, 1654, 
+        1656, 1670, 1679, 1680], dtype=np.uint16)
+    twoD_viz('Year: 1998', interval, V[interval - 1], rect, annotate=False)
+
     # create and save plots using movie ids and coordinates from V
     twoD_viz('All Movies', movie_ids, V, rect, annotate=False)
     viz_comparison('3-Genre Comparison', genre_coords, 
@@ -222,7 +238,8 @@ def viz_tasks(V):
     twoD_viz('Top 10 Genre: War Films', war, V[war - 1], rect)
     print('done!')
 
+
 if __name__ == '__main__':
     A = np.load('models/0.28235-A-0.10000-0.0100.npy')
     V = np.load('models/0.28235-V-0.10000-0.0100.npy')
-    viz_tasks(np.matmul(A.transpose(), V).transpose())
+    viz_tasks(np.matmul(V.transpose(), A))
