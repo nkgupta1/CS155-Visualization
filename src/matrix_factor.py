@@ -32,7 +32,6 @@ def create_Y():
             movie = int(lst[1]) - 1 # Zero-indexing
             rating = int(lst[2])
 
-            # Y[user][movie] = rating
             Y[rating_count][0] = user
             Y[rating_count][1] = movie
             Y[rating_count][2] = rating
@@ -51,15 +50,15 @@ def cross_validate(Y_train, Y_test, regs, etas):
 
     for reg in regs:
         for eta in etas:
-            U, V, errIn = train(Y_train, reg, eta, zero_mean=False, save=False)
-            errIn = get_err(U, V, Y_train)
-            errOut = get_err(U, V, Y_test)
+            U, V, _ = train(Y_train, reg, eta, zero_mean=False, save=False)
+            errIn = get_err(U, V, Y_train, reg=0)
+            errOut = get_err(U, V, Y_test, reg=0)
             output_str = ''
             output_str = '{}, errOut = {:.6f}'.format(output_str, errOut)
             output_str = '{}, reg = {:.5f}'.format(output_str, reg)
             output_str = '{}, eta = {:.4f}'.format(output_str, eta)
             output_str = '{}, errIn = {:.6f}'.format(output_str, errIn)
-            print(output_str)
+            print(output_str[2:])
 
 def train(Y, reg, eta, zero_mean=True, save=True):
     '''
@@ -85,18 +84,29 @@ if __name__ == '__main__':
     eta = .01   # step size
     reg = .1    # regularization strength
 
-    etas = [0.01, 0.02, 0.009, 0.005]
-    regs = [0.1, 0.01]
+    remove_mean = True
+
+    etas = [0.1, 0.01, 0.001]
+    regs = [0.1]
 
     Y = create_Y()
+
+    if remove_mean:
+        Y_mean = Y.mean(axis=0)
+        # don't modify the id numbers
+        Y_mean[0] = 0
+        Y_mean[1] = 0
+
+        Y = Y - Y_mean
+
     num_samples = len(Y)
-    # Y_train = Y[:2*num_samples//3]
-    # Y_test  = Y[2*num_samples//3:]
+    Y_train = Y[:2*num_samples//3]
+    Y_test  = Y[2*num_samples//3:]
 
-    Y_train = Y[num_samples//3:]
-    Y_test  = Y[:num_samples//3]
+    # Y_train = Y[num_samples//3:]
+    # Y_test  = Y[:num_samples//3]
 
-    # train(Y, reg, eta)
-    cross_validate(Y_train, Y_test, regs, etas)
+    train(Y, reg, eta)
+    # cross_validate(Y_train, Y_test, regs, etas)
 
     

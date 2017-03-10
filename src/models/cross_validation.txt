@@ -1,5 +1,5 @@
+error without regularization in training:
 first 2/3 training, last 1/3 test:
-
 , errOut = 0.643741, reg = 0.10000, eta = 0.0100, errIn = 0.267795
 , errOut = 0.651725, reg = 0.10000, eta = 0.0200, errIn = 0.252123
 , errOut = 0.661422, reg = 0.10000, eta = 0.0050, errIn = 0.286361
@@ -32,9 +32,7 @@ first 2/3 training, last 1/3 test:
 , errOut = 1.066705, reg = 0.80000, eta = 0.0100, errIn = 0.769256
 , errOut = 1.250584, reg = 1.00000, eta = 0.0100, errIn = 0.956924
 
-
 last 2/3 training, first 1/3 test:
-
 , errOut = 0.460330, reg = 0.10000, eta = 0.0100, errIn = 0.260879
 , errOut = 0.461616, reg = 0.10000, eta = 0.0050, errIn = 0.274322
 , errOut = 0.462888, reg = 0.10000, eta = 0.0090, errIn = 0.267259
@@ -43,4 +41,29 @@ last 2/3 training, first 1/3 test:
 , errOut = 0.659732, reg = 0.01000, eta = 0.0100, errIn = 0.145086
 , errOut = 0.681749, reg = 0.01000, eta = 0.0050, errIn = 0.129947
 , errOut = 0.687374, reg = 0.01000, eta = 0.0200, errIn = 0.151102
+
+
+error with reg in training and mean removed:
+first 2/3 training, last 1/3 test:
+
+
+
+
+errOut = 0.472064, reg = 0.10000, eta = 0.0050, errIn = 0.222142
+errOut = 0.474038, reg = 0.10000, eta = 0.0100, errIn = 0.224702
+errOut = 0.477569, reg = 0.10000, eta = 0.0010, errIn = 0.290618
+errOut = 0.491969, reg = 0.10000, eta = 0.1000, errIn = 0.237443
+errOut = 0.624262, reg = 1.00000, eta = 0.0050, errIn = 0.638081
+errOut = 0.624280, reg = 1.00000, eta = 0.1000, errIn = 0.638152
+errOut = 0.624281, reg = 1.00000, eta = 0.0100, errIn = 0.638098
+errOut = 0.732767, reg = 0.01000, eta = 0.0050, errIn = 0.114247
+errOut = 0.789952, reg = 0.01000, eta = 0.0100, errIn = 0.103601
+errOut = 0.819212, reg = 0.01000, eta = 0.1000, errIn = 0.202040
+errOut = 0.847534, reg = 0.00100, eta = 0.0050, errIn = 0.110945
+errOut = 0.868467, reg = 0.00010, eta = 0.1000, errIn = 0.440801
+errOut = 0.880642, reg = 0.00010, eta = 0.0050, errIn = 0.109889
+errOut = 0.921586, reg = 0.00100, eta = 0.1000, errIn = 0.417915
+errOut = 1.048777, reg = 0.00100, eta = 0.0100, errIn = 0.100087
+errOut = 1.088209, reg = 0.00010, eta = 0.0100, errIn = 0.100609
+
 
