@@ -66,7 +66,7 @@ if __name__=='__main__':
     plot(freqs3, 'Ratings of 10 Highest-Rated Movies')
     pretty_print(names3, '10 Best Movies')
 
-    # Part 3b - Best movies with over 10 Ratings
+    # Part 3b - Best movies with over 50 Ratings
     ratings4 = [lst for lst in ratings if len(lst[1]) >= 50] # No change from 10, 50
     ratings4 = sorted(ratings4, key=lambda x: (sum(x[1]) / len(x[1])), reverse=True)
     freqs4 = []
