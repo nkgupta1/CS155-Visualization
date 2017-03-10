@@ -75,8 +75,8 @@ def train(Y, reg, eta, Y_test=None, zero_mean=True, save=True):
     if save:
         np.save('models/{:6.5f}-U-{:.5f}-{:.4f}'.format(err, reg, eta), U)
         np.save('models/{:6.5f}-V-{:.5f}-{:.4f}'.format(err, reg, eta), V)
-        np.save('models/{:6.5f}-a-{:.5f}-{:.4f}'.format(err, reg, eta), a)
-        np.save('models/{:6.5f}-b-{:.5f}-{:.4f}'.format(err, reg, eta), b)
+        np.save('models/{:6.5f}-a-bias-{:.5f}-{:.4f}'.format(err, reg, eta), a)
+        np.save('models/{:6.5f}-b-bias-{:.5f}-{:.4f}'.format(err, reg, eta), b)
         np.save('models/{:6.5f}-A-{:.5f}-{:.4f}'.format(err, reg, eta), A[:, :2])
 
     return U, V, a, b, err
