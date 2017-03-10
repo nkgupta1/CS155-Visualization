@@ -7,7 +7,27 @@ from common import *
 
 movie_names = create_dict()  # dict[movie_id: movie_name]
 movie_ratings = import_data()  # movies[movie_id, ratings[rating]]
-
+genre_names = list({
+        'Unknown' : 0,
+        'Action' : 1,
+        'Adventure' : 2,
+        'Animation' : 3,
+        'Childrens' : 4,
+        'Comedy' : 5,
+        'Crime' : 6,
+        'Documentary' : 7,
+        'Drama' : 8,
+        'Fantasy' : 9,
+        'Film-Noir' : 10,
+        'Horror' : 11,
+        'Musical' : 12,
+        'Mystery' : 13,
+        'Romance' : 14,
+        'Sci-Fi' : 15,
+        'Thriller' : 16,
+        'War' : 17,
+        'Western' : 18
+    }.keys())
 
 def twoD_viz(title, movie_ids, xy_coords, rect, dpi=100, buf=0.1, annotate=True):
     '''
@@ -61,7 +81,7 @@ def twoD_viz(title, movie_ids, xy_coords, rect, dpi=100, buf=0.1, annotate=True)
                transparent=True, dpi=dpi)
 
 
-def viz_comparison(title, xy_coords_lst, colors, rect, dpi=100):
+def viz_comparison(title, xy_coords_lst, colors, rect, names=None, dpi=100):
     # create plot dimensions, resolution, and axis ranges
     plt.clf()
     fig, ax = plt.subplots(figsize=(10., 10.), dpi=dpi)
@@ -77,8 +97,14 @@ def viz_comparison(title, xy_coords_lst, colors, rect, dpi=100):
         ax.scatter(xy_coords_lst[0][:, 0], xy_coords_lst[0][:, 1], c=colors[0])
     else:
         for i, xy_coords in enumerate(xy_coords_lst):
-            ax.scatter(xy_coords[:, 0], xy_coords[:, 1], color=colors[i])
+            if names is not None:
+                ax.scatter(xy_coords[:, 0], xy_coords[:, 1], color=colors[i], 
+                    label=names[i], s=15)
+            else:
+                ax.scatter(xy_coords[:, 0], xy_coords[:, 1], color=colors[i])
     
+    if names is not None:
+        plt.legend(loc='center left')
     # remove top and right axis-lines for aesthetic purposes
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
@@ -120,9 +146,13 @@ def viz_tasks(V):
     fantasy, scifi, war = [np.array([x for x, y in 
         sorted(genre, key=lambda x: sum(x[1]) / len(x[1]), reverse=True) if 
         len(y) >= 50][:10]) for genre in [fantasy_all, scifi_all, war_all]]
+
     # regroup models. only include over 50 ratings
-    fantasy_coords = [V[np.array([x for x, y in genre if len(y) >= 50]) - 1] 
+    genre_coords = [V[np.array([x for x, y in genre if len(y) >= 50]) - 1] 
         for genre in [fantasy_all, scifi_all, war_all]]
+    all_genres = [import_genres([name]) for name in genre_names]
+    all_genre_coords = [V[np.array([x for x, y in genre if len(y) >= 50]
+        ).astype(np.uint16) - 1] for genre in all_genres]
 
     # turn popularity values into colors
     all_popular = all_popular.astype(np.float32)
@@ -135,20 +165,20 @@ def viz_tasks(V):
     all_best = sorted(all_best, key=lambda x: x[1], reverse=True)
     all_best = np.array(all_best).astype(np.float32).transpose()
     all_best[1] /= all_best[1].max()
-    all_best[1] = all_best[1]
 
     # rectangle bounding all possible xy coordinates in V
     rect = [V[:, 0].min(), V[:, 0].max(), V[:, 1].min(), V[:, 1].max()]
 
     # create and save plots using movie ids and coordinates from V
     twoD_viz('All Movies', movie_ids, V, rect, annotate=False)
-    viz_comparison('Genre Comparison', fantasy_coords, 
-        ['blue', 'green', 'red'], rect)
+    viz_comparison('3-Genre Comparison', genre_coords, 
+        ['blue', 'green', 'red'], rect, names=['Fantasy', 'Sci-Fi', 'War'])
+    viz_comparison('All Genre Comparison', all_genre_coords, 
+        np.random.random((len(genre_names), 3)), rect, names=genre_names)
     viz_comparison('Popularity Comparison', 
         [V[all_popular[1].astype(np.uint16) - 1]], [all_popular[0]], rect)
     viz_comparison('Rating Comparison', 
         [V[all_best[0].astype(np.uint16) - 1]], [all_best[1]], rect)
-    quit()
     twoD_viz('10 Random Films', rand_movies, V[rand_movies - 1], rect)
     twoD_viz('10 Most Popular Films', most_popular, V[most_popular - 1], rect)
     twoD_viz('10 Top Rated Films', best_movies, V[best_movies - 1], rect)
