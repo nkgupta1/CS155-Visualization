@@ -45,10 +45,6 @@ last 2/3 training, first 1/3 test:
 
 error with reg in training and mean removed:
 first 2/3 training, last 1/3 test:
-
-
-
-
 errOut = 0.472064, reg = 0.10000, eta = 0.0050, errIn = 0.222142
 errOut = 0.474038, reg = 0.10000, eta = 0.0100, errIn = 0.224702
 errOut = 0.477569, reg = 0.10000, eta = 0.0010, errIn = 0.290618
@@ -65,5 +61,20 @@ errOut = 0.880642, reg = 0.00010, eta = 0.0050, errIn = 0.109889
 errOut = 0.921586, reg = 0.00100, eta = 0.1000, errIn = 0.417915
 errOut = 1.048777, reg = 0.00100, eta = 0.0100, errIn = 0.100087
 errOut = 1.088209, reg = 0.00010, eta = 0.0100, errIn = 0.100609
+
+
+error with reg in training, mean removed, bias term, stopping parameter = 0.003:
+first 2/3 training, last 1/3 test:
+errOut = 0.446253, reg = 0.10000, eta = 0.0100, errIn = 0.242214
+errOut = 0.448719, reg = 0.10000, eta = 0.0050, errIn = 0.255420
+errOut = 0.478732, reg = 0.10000, eta = 0.1000, errIn = 0.230768
+errOut = 0.492864, reg = 1.00000, eta = 0.0100, errIn = 0.476065
+errOut = 0.494233, reg = 1.00000, eta = 0.0050, errIn = 0.475877
+errOut = 0.507058, reg = 1.00000, eta = 0.1000, errIn = 0.493825
+errOut = 0.594936, reg = 0.01000, eta = 0.0050, errIn = 0.150427
+errOut = 0.621251, reg = 0.01000, eta = 0.0100, errIn = 0.136140
+errOut = 0.798689, reg = 0.01000, eta = 0.1000, errIn = 0.207856
+
+
 
 

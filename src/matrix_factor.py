@@ -50,9 +50,9 @@ def cross_validate(Y_train, Y_test, regs, etas):
 
     for reg in regs:
         for eta in etas:
-            U, V, _ = train(Y_train, reg, eta, zero_mean=False, save=False)
-            errIn = get_err(U, V, Y_train, reg=0)
-            errOut = get_err(U, V, Y_test, reg=0)
+            U, V, a, b, _ = train(Y_train, reg, eta, Y_test=Y_test, zero_mean=False, save=False)
+            errIn = get_err(U, V, a, b, Y_train, reg=0)
+            errOut = get_err(U, V, a, b, Y_test, reg=0)
             output_str = ''
             output_str = '{}, errOut = {:.6f}'.format(output_str, errOut)
             output_str = '{}, reg = {:.5f}'.format(output_str, reg)
@@ -60,12 +60,12 @@ def cross_validate(Y_train, Y_test, regs, etas):
             output_str = '{}, errIn = {:.6f}'.format(output_str, errIn)
             print(output_str[2:])
 
-def train(Y, reg, eta, zero_mean=True, save=True):
+def train(Y, reg, eta, Y_test=None, zero_mean=True, save=True):
     '''
-    learns U and V
+    learns U, V, a, b
     '''
 
-    (U, V, err) = train_model(M, N, K, eta, reg, Y)
+    (U, V, a, b, err) = train_model(M, N, K, eta, reg, Y, Y_test=Y_test, eps=0.003)
 
     if zero_mean:
         V = V - V.mean(axis=0)
@@ -75,9 +75,11 @@ def train(Y, reg, eta, zero_mean=True, save=True):
     if save:
         np.save('models/{:6.5f}-U-{:.5f}-{:.4f}'.format(err, reg, eta), U)
         np.save('models/{:6.5f}-V-{:.5f}-{:.4f}'.format(err, reg, eta), V)
+        np.save('models/{:6.5f}-a-{:.5f}-{:.4f}'.format(err, reg, eta), a)
+        np.save('models/{:6.5f}-b-{:.5f}-{:.4f}'.format(err, reg, eta), b)
         np.save('models/{:6.5f}-A-{:.5f}-{:.4f}'.format(err, reg, eta), A[:, :2])
 
-    return U, V, err
+    return U, V, a, b, err
 
 if __name__ == '__main__':
 
@@ -86,8 +88,8 @@ if __name__ == '__main__':
 
     remove_mean = True
 
-    etas = [0.1, 0.01, 0.001]
-    regs = [0.1]
+    etas = [0.1, 0.01, 0.005]
+    regs = [1, 0.1, 0.01]
 
     Y = create_Y()
 
