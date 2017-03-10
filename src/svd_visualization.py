@@ -29,7 +29,8 @@ genre_names = list({
         'Western' : 18
     }.keys())
 
-def twoD_viz(title, movie_ids, xy_coords, rect, dpi=100, buf=0.1, annotate=True):
+
+def twoD_viz(title, movie_ids, xy_coords, rect, dpi=300, buf=0.1, annotate=True):
     '''
     param: title: title for plot as well as save-name
     param: movie_ids: 1d-list or numpy array of [movie_ids]
@@ -37,8 +38,14 @@ def twoD_viz(title, movie_ids, xy_coords, rect, dpi=100, buf=0.1, annotate=True)
     movie_id in movie_ids
     param: rect: rectangle bounding all possible xy coordinates in V 
     given by [minimum X, maximum X, minimum Y, maximum Y]
-    return: none: plots points on a scatter plot and annotates them with 
-    movie names before saving them into /graphics with the name param:title
+    param: dpi: int: dpi of image saved (resolution = dpi * figsize)
+    param: buf: float: buffer to add from edges of window plot so points 
+    that define rect are fully on plot
+    param: annotate: bool: whether to annotate plot with names given by 
+    movie_names[movie_ids]
+    return: none: plots points on a scatter plot and annotates them based on 
+    annotate with movie names before saving them into /graphics with the name 
+    param:title and resolution given by dpi
     '''
     # define rect according according to points in xy_coords
     if rect is None:
@@ -81,17 +88,31 @@ def twoD_viz(title, movie_ids, xy_coords, rect, dpi=100, buf=0.1, annotate=True)
                transparent=True, dpi=dpi)
 
 
-def viz_comparison(title, xy_coords_lst, colors, rect, names=None, dpi=100):
+def viz_comparison(title, xy_coords_lst, colors, rect, names=None, dpi=300, 
+    seperated_save=False):
+    '''
+    param: title: str: title for plot as well as save-name
+    param: xy_coords_lst: list of 2d numpy arrays of [movie_x, movie_y] 
+    corresponding to movie_id in movie_ids
+    param: colors: 2d numpy array of colors[r, g, b, a] corresponding to the 
+    color for every list of xy_coords in xy_coords_lst
+    param: rect: rectangle bounding all possible xy coordinates in V 
+    given by [minimum X, maximum X, minimum Y, maximum Y]
+    param: names: list[str]: list of names for corresponding elements in 
+    xy_coords_lst
+    param: seperated_save: bool: whether to separately save the plot of every 
+    element of xy_coords_lst seperately with its name given in names
+    param: dpi: int: dpi of image saved (resolution = dpi * figsize)
+    return: none: plot lists of points on a scatter plot with optional 
+    color and then titles and saves them in one image of seperate images, 
+    based on seperated_save, using name given in names
+    '''
     # create plot dimensions, resolution, and axis ranges
     plt.clf()
     fig, ax = plt.subplots(figsize=(10., 10.), dpi=dpi)
     ax.set_title(title, fontdict={'fontsize': 25})
     ax.axis(rect)
 
-    # get relative sizes and ranges of drawing window
-    x_mid, y_mid = (rect[0] + rect[1]) / 2., (rect[2] + rect[3]) / 2.
-    x_interval, y_interval = (rect[1] - rect[0]), (rect[3] - rect[2])
-    
     # draw points. use decimal colors if one group. else, colors are distinct
     if len(xy_coords_lst) == 1:
         ax.scatter(xy_coords_lst[0][:, 0], xy_coords_lst[0][:, 1], c=colors[0])
@@ -113,6 +134,18 @@ def viz_comparison(title, xy_coords_lst, colors, rect, names=None, dpi=100):
     print('saving...', title)
     plt.savefig('../graphics/{0}.png'.format(title), bbox_inches='tight', 
                transparent=True, dpi=dpi)
+
+    if seperated_save:
+        print('saving... seperated ' + title)
+        for i, xy_coords in enumerate(xy_coords_lst):
+            title = 'Genre: ' + names[i]
+            plt.clf()
+            fig, ax = plt.subplots(figsize=(10., 10.), dpi=dpi)
+            ax.set_title(title, fontdict={'fontsize': 25})
+            ax.axis(rect)
+            ax.scatter(xy_coords[:, 0], xy_coords[:, 1])
+            plt.savefig('../graphics/genres/{0}.png'.format(title), 
+                bbox_inches='tight', transparent=True, dpi=dpi)
 
 
 def viz_tasks(V):
@@ -137,7 +170,8 @@ def viz_tasks(V):
     most_popular = all_popular[1][-10:]
 
     # 10 best movies
-    best_movies = np.array(list(zip(*sorted(zip(movie_avg_ratings, movie_ids)))))[1][-10:]
+    best_movies = np.array(list(zip(*sorted(zip(movie_avg_ratings, movie_ids)))), 
+        dtype=np.uint16)[1][-10:]
 
     # first 10 movies from three genres. only include over 50 ratings
     fantasy_all = import_genres(['Fantasy'])
@@ -157,7 +191,7 @@ def viz_tasks(V):
     # turn popularity values into colors
     all_popular = all_popular.astype(np.float32)
     all_popular[0] /= all_popular[0].max()
-    all_popular[0] = all_popular[0] ** .25
+    all_popular[0] = all_popular[0] ** .25  # rescale to see non-popular better
 
     # get rating values above 20 frequency and turn into colors
     all_best = [x for x in movie_ratings if len(x[1]) >= 20]
@@ -174,7 +208,8 @@ def viz_tasks(V):
     viz_comparison('3-Genre Comparison', genre_coords, 
         ['blue', 'green', 'red'], rect, names=['Fantasy', 'Sci-Fi', 'War'])
     viz_comparison('All Genre Comparison', all_genre_coords, 
-        np.random.random((len(genre_names), 3)), rect, names=genre_names)
+        np.random.random((len(genre_names), 3)), rect, names=genre_names, 
+        seperated_save=True)
     viz_comparison('Popularity Comparison', 
         [V[all_popular[1].astype(np.uint16) - 1]], [all_popular[0]], rect)
     viz_comparison('Rating Comparison', 
@@ -188,6 +223,6 @@ def viz_tasks(V):
     print('done!')
 
 if __name__ == '__main__':
-    A = np.load('models/0.30616-A-0.1000-0.0100.npy')
-    V = np.load('models/0.30616-V-0.1000-0.0100.npy')
+    A = np.load('models/0.28235-A-0.10000-0.0100.npy')
+    V = np.load('models/0.28235-V-0.10000-0.0100.npy')
     viz_tasks(np.matmul(A.transpose(), V).transpose())
