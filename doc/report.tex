@@ -20,7 +20,7 @@
 \usepackage{longtable} %Make multi-page tables
 \usepackage{enumitem}
 \usepackage{graphicx} % Import pics \includegraphics[scale=0.7]{SGD}
-\graphicspath{{figures/}} % Change pic path
+\graphicspath{{../graphics/}} % Change pic path
 \usepackage{makecell}
 \usepackage[margin=2.25cm]{caption}
 
@@ -67,15 +67,58 @@
 \section{Matrix Factorization Visualization}
 \medskip
 \subsection{What did you observe?}
+We observed a significant correlation in the rating of a movie and one of the 2 dimensions of $\widetilde{V}$ [Figure ]. Although there was no discernible correlation between movie genre and either of the dimensions, we noticed that movies belonging from the same series (like sequels of Star Trek movies) appeared to be clustered closer to together compared to random noise [Figure ]. We also attempted to find correlations between popularity and dating of the movies and the two dimensions. The release date of a movie appeared to have none [Figure]. 
+
 \subsection{How do the ratings of the best movies compare to those of the most popular movies}
+Popularity appeared to have a slight correlation in the same dimension and direction as rating in $\widetilde{V}$ [Figure ]. We believe this is because popularity is inherently correlated with the rating of a movie, meaning that more popular movies tend to have higher ratings, and since the correlation is stronger with $\widetilde{V}$ and rating, we believe the popularity correlation is a side effect of that.
+
 \subsection{How do the ratings of the three genres you chose compare to one another}
+As shown in Figure [], there is no difference in the values of the two dimensions $\widetilde{V}$ and the three genres. Overall, the distribution of ratings for the three genres is similar and is explained in more depth and shown in section (2).
+
 \subsection{What was expected and what was surprising from the visualizations?}
+We expected to see a stronger (or any) correlation between the 2 dimensions of $\widetilde{V}$ and the genres, as shown in the examples in class. Even after implementing bias and bias regularization in the matrix factorization and grid-searching to find the optimal step size and regularizations, the $E_{out}$ did not decrease below 0.446 and the visualization of $\widetilde{V}$ after performing SVD did not result in any meaningful correlations besides the average rating of movies, which is rather obvious with ML.
+
 \subsection{Any other comparisons/observations}
+While there may be correlations between features in the movies given by $\widetilde{V}$, they go beyond genres and dating. More detailed observations on individual genres can be seen in Figures [A-B].\\
+
+Also, before we implemented bias and bias regularization in the matrix factorization, the values of $V$ for the movies were in the positive quadrant, the correlation between popularity and rating appeared to be stronger, and $E_{out}$ was higher. However, after bias, the data became more centered in both dimensions.
+
 
 \section{Conclusion}
 \medskip
 \subsection{Briefly summarize your main observations}
 \subsection{Did your visualizations help you to better understand the MovieLens dataset?}
 
+
+
+
+% APPENDIX PART C
+%\includegraphics[scale=0.35]{"All Movies"}
+%\includegraphics[scale=0.35]{"Popularity Comparison"} \\ \\
+%\includegraphics[scale=0.35]{"Rating Comparison"}
+%\includegraphics[scale=0.35]{"3-Genre Comparison"} \\ \\
+%\includegraphics[scale=0.35]{"All Genre Comparison"}
+%\includegraphics[scale=0.35]{"Series: Star Trek"} \\ \\
+%\includegraphics[scale=0.35]{"Year: 1998"} \\ \\
+
+\noindent
+%\includegraphics[scale=0.26]{"genres/Genre: Action"}
+%\includegraphics[scale=0.26]{"genres/Genre: Adventure"}
+%\includegraphics[scale=0.26]{"genres/Genre: Animation"} \\ \\
+%\includegraphics[scale=0.26]{"genres/Genre: Childrens"}  
+%\includegraphics[scale=0.26]{"genres/Genre: Comedy"}
+%\includegraphics[scale=0.26]{"genres/Genre: Crime"} \\ \\
+%\includegraphics[scale=0.26]{"genres/Genre: Documentary"}
+%\includegraphics[scale=0.26]{"genres/Genre: Drama"}  
+%\includegraphics[scale=0.26]{"genres/Genre: Fantasy"} \\ \\
+%\includegraphics[scale=0.26]{"genres/Genre: Film-Noir"}
+%\includegraphics[scale=0.26]{"genres/Genre: Horror"}
+%\includegraphics[scale=0.26]{"genres/Genre: Musical"} \\ \\
+%\includegraphics[scale=0.26]{"genres/Genre: Mystery"}
+%\includegraphics[scale=0.26]{"genres/Genre: Romance"}
+%\includegraphics[scale=0.26]{"genres/Genre: Sci-Fi"} \\ \\
+%\includegraphics[scale=0.26]{"genres/Genre: Thriller"}  
+%\includegraphics[scale=0.26]{"genres/Genre: War"}
+%\includegraphics[scale=0.26]{"genres/Genre: Western"}
 
 \end{document}
