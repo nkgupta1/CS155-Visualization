@@ -110,19 +110,19 @@ Each of these changes progressively made the out of sample error better.
 \section{Matrix Factorization Visualization}
 \medskip
 \subsection*{What did you observe?}
-We observed a significant correlation in the rating of a movie and one of the 2 dimensions of $\widetilde{V}$ [Figure ]. Although there was no discernible correlation between movie genre and either of the dimensions, we noticed that movies belonging from the same series (like sequels of Star Trek movies) appeared to be clustered closer to together compared to random noise [Figure ]. We also attempted to find correlations between popularity and dating of the movies and the two dimensions. The release date of a movie appeared to have none [Figure]. 
+We observed a significant correlation in the rating of a movie and one of the 2 dimensions of $\widetilde{V}$ (Appendix \ref{appendix:viz-Rating}). Although there was no discernible correlation between movie genre and either of the dimensions, we noticed that movies belonging from the same series (like sequels of Star Trek movies) appeared to be clustered closer to together compared to random noise (Appendix \ref{appendix:viz-Trek}). We also attempted to find correlations between popularity and dating of the movies and the two dimensions. The release date of a movie appeared to have none (Appendix \ref{appendix:viz-1998}). 
 
 \subsection*{How do the ratings of the best movies compare to those of the most popular movies}
-Popularity appeared to have a slight correlation in the same dimension and direction as rating in $\widetilde{V}$ [Figure ]. We believe this is because popularity is inherently correlated with the rating of a movie, meaning that more popular movies tend to have higher ratings, and since the correlation is stronger with $\widetilde{V}$ and rating, we believe the popularity correlation is a side effect of that.
+Popularity appeared to have a slight correlation in the same dimension and direction as rating in $\widetilde{V}$ (Appendix \ref{appendix:viz-Popularity}). We believe this is because popularity is inherently correlated with the rating of a movie, meaning that more popular movies tend to have higher ratings, and since the correlation is stronger with $\widetilde{V}$ and rating, we believe the popularity correlation is a side effect of that.
 
 \subsection*{How do the ratings of the three genres you chose compare to one another}
-As shown in Figure [], there is no difference in the values of the two dimensions $\widetilde{V}$ and the three genres. Overall, the distribution of ratings for the three genres is similar and is explained in more depth and shown in section (2).
+As shown in Figure (Appendix \ref{appendix:viz-3Genre}), there is no difference in the values of the two dimensions $\widetilde{V}$ and the three genres. Overall, the distribution of ratings for the three genres is similar and is explained in more depth and shown in section (2).
 
 \subsection*{What was expected and what was surprising from the visualizations?}
 We expected to see a stronger (or any) correlation between the 2 dimensions of $\widetilde{V}$ and the genres, as shown in the examples in class. Even after implementing bias and bias regularization in the matrix factorization and grid-searching to find the optimal step size and regularizations, the $E_{out}$ did not decrease below 0.446 and the visualization of $\widetilde{V}$ after performing SVD did not result in any meaningful correlations besides the average rating of movies, which is rather obvious with ML.
 
 \subsection{Any other comparisons/observations}
-While there may be correlations between features in the movies given by $\widetilde{V}$, they go beyond genres and dating, and have esoteric meaning. More detailed observations on individual genres can be seen in Figures [A-B].
+While there may be correlations between features in the movies given by $\widetilde{V}$, they go beyond genres and dating, and have esoteric meaning. More detailed observations on individual genres can be seen in  (Appendix \ref{appendix:viz-Genres}).
 
 Also, before we implemented bias and bias regularization in the matrix factorization, the values of $V$ for the movies were in the positive quadrant, the correlation between popularity and rating appeared to be stronger, and $E_{out}$ was higher. However, after bias, the data became more centered in both dimensions.
 
@@ -277,37 +277,44 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 \begin{center}
 % Figure N
 \begin{minipage}{0.48\linewidth}
+\label{appendix:viz-Popularity}
 \includegraphics[scale=0.35]{"Popularity Comparison"}
-\captionof{figure}{Some here}
+\captionof{figure}{There is no statistically significant correlation between popularity and any of the dimensions of $\widetilde{V}$}
 \end{minipage}
 \hfill % spread out row
 % Figure N+1
 \begin{minipage}{0.48\linewidth}
+\label{appendix:viz-Rating}
 \includegraphics[scale=0.35]{"Rating Comparison"}
-\captionof{figure}{Some here}
+\captionof{figure}{The only real correlation we found was in rating along one of the dimensions o$\widetilde{V}$.}
 \end{minipage}
 % Figure N+2
 \begin{minipage}{0.48\linewidth}
+\label{appendix:viz-3Genre}
 \includegraphics[scale=0.35]{"3-Genre Comparison"}
 \captionof{figure}{Some here}
 \end{minipage}
 \hfill % spread out row
 \begin{minipage}{0.48\linewidth}
+\label{appendix:viz-Genre}
 \includegraphics[scale=0.35]{"All Genre Comparison"}
 \captionof{figure}{Some here}
 \end{minipage}
 \begin{minipage}{0.48\linewidth}
+\label{appendix:viz-Trek}
 \includegraphics[scale=0.35]{"Series: Star Trek"}
 \captionof{figure}{Some here}
 \end{minipage}
 \hfill % spread out row
 \begin{minipage}{0.48\linewidth}
+\label{appendix:viz-1998}
 \includegraphics[scale=0.35]{"Year: 1998"}
 \captionof{figure}{Some here}
 \end{minipage}
 \end{center}
 
 \pagebreak
+\label{appendix:viz-Genres}
 \includegraphics[scale=0.26]{"genres/Genre: Action"}
 \includegraphics[scale=0.26]{"genres/Genre: Adventure"}
 \includegraphics[scale=0.26]{"genres/Genre: Animation"} \\ \\
