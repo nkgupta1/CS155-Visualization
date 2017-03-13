@@ -119,7 +119,7 @@ Popularity appeared to have a slight correlation in the same dimension and direc
 As shown in Figure (Appendix \ref{appendix:viz-3Genre}), there is no difference in the values of the two dimensions $\widetilde{V}$ and the three genres. Overall, the distribution of ratings for the three genres is similar and is explained in more depth and shown in section (2).
 
 \subsection*{What was expected and what was surprising from the visualizations?}
-We expected to see a stronger (or any) correlation between the 2 dimensions of $\widetilde{V}$ and the genres, as shown in the examples in class. Even after implementing bias and bias regularization in the matrix factorization and grid-searching to find the optimal step size and regularizations, the $E_{out}$ did not decrease below 0.446 and the visualization of $\widetilde{V}$ after performing SVD did not result in any meaningful correlations besides the average rating of movies, which is rather obvious with ML.
+We expected to see a stronger (or any) correlation between the 2 dimensions of $\widetilde{V}$ and the genres, as shown in the examples in class. Even after implementing bias and bias regularization in the matrix factorization and grid-searching to find the optimal step size and regularizations, the visualization of $\widetilde{V}$ after performing SVD did not result in any meaningful correlations besides the average rating of movies, which is rather obvious with ML.
 
 \subsection*{Any other comparisons/observations}
 While there may be correlations between features in the movies given by $\widetilde{V}$, they go beyond genres and dating, and have esoteric meaning. More detailed observations on individual genres can be seen in  (Appendix \ref{appendix:viz-Genres}).
@@ -130,7 +130,7 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 \section{Conclusion}
 \medskip
 \subsection*{Briefly summarize your main observations}
-We found that we could optimize the parameters of our model consistently and effectively to minimize $E_{out}$.  We also found that adding bias and bias regularization improved our $E_{out}$. That being said, we $E_{out}$ was significantly high and was always significantly above $E_{in}$ despite regularization. However, given the amount of data and how much true correlation we would expected to exist between users and movies, we believe the produced model were sufficient for visualization analysis.
+We found that we could optimize the parameters of our model consistently and effectively to minimize $E_{out}$.  We also found that adding bias improved our $E_{out}$. However, given the amount of data and how much true correlation we would expect to exist between users and movies, we believe the produced models were sufficient for visualization analysis. Our model achieved an MSE of less than 0.5, which implies that it can predict movie ratings for a user within a point.
 \subsection*{Did your visualizations help you to better understand the MovieLens dataset?}
 The observations from the basic visualization part were expected, but they also helped us in understanding the results from the matrix factorization visualization. For example, we noticed that popularity and ratings were highly correlated, which explained why we saw, at least initially, a strong popularity correlation between popularity and the coordinates in $\widetilde{V}$.
 
@@ -319,8 +319,60 @@ There was no observable trend we could find from the matrix factorization visual
 
 
 \section{Matrix Factorization Visualizations}
-\label{appendix:matrixvisual}
 \begin{center}
+% Figure N
+\begin{minipage}{0.48\linewidth}
+\label{appendix:viz-0}
+\includegraphics[scale=0.35]{"10 Random Films"}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{The coordinates of 10 randomly chosen films in the space of $\widetilde{V}$.}
+\end{minipage}
+\hfill % spread out row
+% Figure N+1
+\begin{minipage}{0.48\linewidth}
+\label{appendix:viz-1}
+\includegraphics[scale=0.35]{"10 Most Popular Films"}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{The 10 most popular films in the space of $\widetilde{V}$.}
+\end{minipage}
+% Figure N
+\begin{minipage}{0.48\linewidth}
+\label{appendix:viz-2}
+\includegraphics[scale=0.35]{"10 Top Rated Films"}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{The 10 films with the highest average ratings and over 50 total ratings in the space of $\widetilde{V}$}
+\end{minipage}
+\hfill % spread out row
+% Figure N+1
+\begin{minipage}{0.48\linewidth}
+\label{appendix:viz-3}
+\includegraphics[scale=0.35]{"Top 10 Genre: Fantasy Films"}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{The top 10 most popular films in the Fantasy genre, one of the three chosen in Basic Visualizations.}
+\end{minipage}
+% Figure N
+\begin{minipage}{0.48\linewidth}
+\label{appendix:viz-4}
+\includegraphics[scale=0.35]{"Top 10 Genre: Sci-Fi Films"}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{The top 10 most popular films in the Sci-Fi genre, one of the three chosen in Basic Visualizations.}
+\end{minipage}
+\hfill % spread out row
+% Figure N+1
+\begin{minipage}{0.48\linewidth}
+\label{appendix:viz-5}
+\includegraphics[scale=0.35]{"Top 10 Genre: War Films"}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{The top 10 most popular films in the War genre, one of the three chosen in Basic Visualizations.}
+\end{minipage}
+\begin{minipage}{0.48\linewidth}
+\label{appendix:viz-6}
+\includegraphics[scale=0.35]{"All Movies"}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{Coordinates of all movies in the dataset shown in the space of $\widetilde{V}$.}
+\end{minipage}
+
+\label{appendix:matrixvisual}
 % Figure N
 \begin{minipage}{0.48\linewidth}
 \label{appendix:viz-Popularity}
@@ -361,7 +413,7 @@ There was no observable trend we could find from the matrix factorization visual
 \label{appendix:viz-1998}
 \includegraphics[scale=0.35]{"Year: 1998"}
 \captionsetup{width=.85\linewidth}
-\captionof{figure}{All movies from 1998 are plotted here. No noticable difference from all movies noticed here either.}
+\captionof{figure}{All movies from 1998 are plotted here. No noticeable difference from all movies noticed here either.}
 \end{minipage}
 \end{center} 
 
