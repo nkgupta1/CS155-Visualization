@@ -23,6 +23,7 @@
 \graphicspath{{figures/}} % Change pic path
 \usepackage{makecell}
 \usepackage[margin=2.25cm]{caption}
+\setlength{\parindent}{20pt}
 
 \begin{document}
 \pagestyle{fancy}
@@ -52,11 +53,32 @@
 \section{Basic Visualizations}
 \medskip
 \subsection{Justify your choice of visualization method}
+For each of the basic visualizations, we displayed data in (normalized) histogram format. This method was suggested by the project guidelines, and is also a very clear way of comparing frequency of ratings. This method is well-suited to visualizing data involving counts (i.e., no error bars, variation, etc.), which is what we are asked to do in this section. For Part 3, we provide two graphs; the top 10 highest rated movies (all of which have only been rated 5), and the top 10 highest rated movies with at least 50 ratings (these also happen to be the top 10 highest rated movies with at least 10 ratings, so the cutoff isn't too important).
+\smallskip
 \subsection{What did you observe?}
+For Part 1, in which we visualized all ratings, we observed that 3's and 4's were present more frequently than would be expected in a uniform rating scheme ($~$0.2 frequency for each), 5's were present exactly as frequently as expected, and 1's and 2's were underrepresented.
+
+For Part 2, in which we visualized the 10 most popular movies (as determined from the number of rankings), we found that the most frequent ratings were 4's and 5's, both of which increased in frequency compared to the total dataset. The frequency of 1's, 2's, and 3's decreased.
+
+For Part 3, in which we visualized the 10 highest rated movies, we found (somewhat unsurprisingly) that all ratings were 5's. When we only considered movies with sufficiently many ratings, we found that the most common rating was still 5, with 4's also highly represented. Lower ratings were uncommon, with around 12$\%$ of total ratings being 3's or below.
+
+For Part 4, in which we considered ratings for particular genres, we examined Fantasy, Sci-Fi, and War movies. Sci-Fi movies followed the same general trend as overall ratings, while both Fantasy and War movies tended to be skewed towards high ratings.
+\smallskip
 \subsection{Did the results match what you would expect to see?}
-\subsection{How do the ratings of the best movies compare to those of those of the most popular movies}
-\subsection{How do the ratings of the three genres you chose compare to one another}
-\subsection{Any other comparisons/observations}
+For Part 1, the results matched my expectations. We would expect that better movies would be watched more, which would lead to higher ratings. 
+
+For Part 2, the results were close to my expectations. I personally would have expected the most popular movies to have an overwhelming majority of 5's; while the most popular movies are significantly more highly rated than the general dataset, their most common rating is still a 4.
+
+For Part 3, the results matched my expectations, both for the top 10 highest rated movies and the top 10 highest rated movies with at least 50 ratings. In the first case, I expected that there would be movies with very few ratings, and of those several would only have 1 or 2 ratings of 5 (as it turns out, there were exactly 10 of them). In the second case, it makes sense that the most highly-rated movies would have ratings near to 5 (in fact, the top ratings were closer to 4.5); as such, we would expect a sizable majority of ratings to be 5's, with very few low ratings.
+
+For Part 4, the results matched my expectation. Given that these are 3 fairly large (and overlapping) genres, I expected that they would match both the overall ratings frequencies and the frequencies of each other. While Fantasy and War movies skewed toward higher ratings than Sci-Fi, the general patterns were very similar.
+\smallskip
+\subsection{How do the ratings of the best movies compare to those of those of the most popular movies?}
+As mentioned above, the ratings of the most popular movies tend to be somewhat similar to the ratings of the overall dataset, while the ratings of the highest-rated movies ($\geq$ 50 ratings) are heavily skewed towards 5's. I would have expected the ratings of these two graphs would be more similar. To explain this difference, it appears that the more popular movies are aimed towards a more general audience (i.e. Toy Story, Independence Day). In contrast, many of the most highly-rated movies are somewhat older and (in my opinion) more culturally significant (i.e. Casablanca, 12 Angry Men); if we assume that user ratings are fairly recent, then it is possible that their ratings for these movies are boosted from a targeted audience that is specifically searching for them, whereas ratings for the most popular movies are from a more representative sample of the general public.
+
+\subsection{How do the ratings of the three genres you chose compare to one another?}
+They are very similar. This is not unexpected, as the Fantasy, Sci-Fi, and War genres overlap significantly (i.e., Star Wars). Further, all of these genres appeal to a fairly similar demographic, so we would expect the users ratings these movies to have similar rating patterns.
+\pagebreak
 
 \section{Matrix Factorization Algorithm}
 \medskip
@@ -77,5 +99,8 @@
 \subsection{Briefly summarize your main observations}
 \subsection{Did your visualizations help you to better understand the MovieLens dataset?}
 
+\pagebreak
+\section{Appendix A - Basic Visualizations}
+\medskip
 
 \end{document}
