@@ -59,13 +59,13 @@
 For each of the basic visualizations, we displayed data in (normalized) histogram format. This method was suggested by the project guidelines, and is also a very clear way of comparing frequency of ratings. This method is well-suited to visualizing data involving counts (i.e., no error bars, variation, etc.), which is what we are asked to do in this section. For Part 3, we provide two graphs; the top 10 highest rated movies (all of which have only been rated 5), and the top 10 highest rated movies with at least 50 ratings (these also happen to be the top 10 highest rated movies with at least 10 ratings, so the cutoff isn't too important).
 \smallskip
 \subsection*{What did you observe?}
-For Part 1, in which we visualized all ratings, we observed that 3's and 4's were present more frequently than would be expected in a uniform rating scheme ($\sim$ 0.2 frequency for each), 5's were present exactly as frequently as expected, and 1's and 2's were underrepresented.
+For Part 1, in which we visualized all ratings, we observed that 3's and 4's were present more frequently than would be expected in a uniform rating scheme ($\sim$ 0.2 frequency for each), 5's were present exactly as frequently as expected, and 1's and 2's were underrepresented (Fig. \ref{appendix:bv1}).
 
-For Part 2, in which we visualized the 10 most popular movies as determined from the number of rankings (Appendix \ref{appendix:popular}), we found that the most frequent ratings were 4's and 5's, both of which increased in frequency compared to the total dataset. The frequency of 1's, 2's, and 3's decreased.
+For Part 2, in which we visualized the 10 most popular movies as determined from the number of rankings (\ref{appendix:popular}, Fig. \ref{appendix:bv2}), we found that the most frequent ratings were 4's and 5's, both of which increased in frequency compared to the total dataset. The frequency of 1's, 2's, and 3's decreased.
 
-For Part 3, in which we visualized the 10 highest rated movies (Appendix \ref{appendix:highest}), we found (somewhat unsurprisingly) that all ratings were 5's. When we only considered movies with sufficiently many ratings (Appendix \ref{appendix:highestpruned}), we found that the most common rating was still 5, with 4's also highly represented. Lower ratings were uncommon, with around 12$\%$ of total ratings being 3's or below.
+For Part 3, in which we visualized the 10 highest rated movies (\ref{appendix:highest}, Fig. \ref{appendix:bv3}), we found (somewhat unsurprisingly) that all ratings were 5's. When we only considered movies with sufficiently many ratings (\ref{appendix:highestpruned}, Fig. \ref{appendix:bv4}), we found that the most common rating was still 5, with 4's also highly represented. Lower ratings were uncommon, with around 12$\%$ of total ratings being 3's or below.
 
-For Part 4, in which we considered ratings for particular genres, we examined Fantasy, Sci-Fi, and War movies. Sci-Fi movies followed the same general trend as overall ratings, while both Fantasy and War movies tended to be skewed towards high ratings.
+For Part 4, in which we considered ratings for particular genres, we examined Fantasy (Fig. \ref{appendix:bv5}), Sci-Fi (Fig. \ref{appendix:bv6}), and War movies (Fig. \ref{appendix:bv7}). Sci-Fi movies followed the same general trend as overall ratings, while both Fantasy and War movies tended to be skewed towards high ratings but otherwise similar.
 \smallskip
 \subsection*{Did the results match what you would expect to see?}
 For Part 1, the results matched my expectations. We would expect that better movies would be watched more, which would lead to higher ratings. 
@@ -95,7 +95,7 @@ They are very similar. This is not unexpected, as the Fantasy, Sci-Fi, and War g
 For the ways we adjusted $\eta,\lambda$, please see Appendix \ref{appendix:gridsearch}. How we adjusted $\epsilon$ is described in the next subsection*.
 
 \subsection*{Justify your choices for the parameters and stopping criteria}
-We grid searched for values of the $\eta,\lambda$ that would provide the best test error. We broke up the data into a training set including $\frac{2}{3}$ of the data and a test set containing the remaining $\frac{1}{3}$ of the data. Please see Appendix \ref{appendix:gridsearch} for results. In addition, we tried various stopping criteria and ended up settling on $\epsilon=0.003$ as the one that gave the best test error. In order to determine this, we tried different orders of magnitude (0.0001, 0.001, 0.01, 0.1) for the value and after finding the best one (0.001), increased the resolution of the search (0.001, 0.002, 0.003, 0.004, 0.005) ending up settling on a specific value (0.003). 
+We grid searched for values of the $\eta,\lambda$ that would provide the best test error. We broke up the data into a training set including $\frac{2}{3}$ of the data and a test set containing the remaining $\frac{1}{3}$ of the data. Please see Appendix \ref{appendix:gridsearch} for results. In addition, we tried various stopping criteria and ended up settling on $\epsilon=0.003$ as the one that gave the best test error. In order to determine this, we tried different orders of magnitude (0.0001, 0.001, 0.01, 0.1) for the value and after finding the best one (0.001), increased the resolution of the search (0.001, 0.002, 0.003, 0.004, 0.005) ending up settling on a specific value (0.003). One important note is that we chose our parameters such that the model would generalize best. In other words, we chose parameters to decrease out of sample error. However, this came at a cost of increasing in sample error but as this is a predictive model, we thought that out of sample error is more important than in sample error.
 
 \subsection*{Did you make any other significant modifications or additions}
 We tried various methods of training:
@@ -181,6 +181,48 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
   Star Wars (1977) \\
   12 Angry Men (1957)
 }
+
+\pagebreak
+
+\section{Basic Visualizations}
+
+\begin{center}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"All Ratings"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv1} Histogram of all ratings in dataset.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings of 10 Most Popular Movies"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv2} Histogram of 10 most popular movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings of 10 Highest-Rated Movies"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv3} Histogram of 10 highest-rated movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings of 10 Highest-Rated Movies (>= 50 Ratings)"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv4} Histogram of 10 highest-rated movies with over 50 ratings.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings for Genres: Fantasy"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv5} Histogram of ratings for fantasy movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings for Genres: Sci-Fi"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv6} Histogram of ratings for sci-fi movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings for Genres: War"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv7} Histogram of ratings for war movies.}
+  \end{minipage}
+\end{center}
 
 \pagebreak
 \section{Grid Search Results}
@@ -279,42 +321,50 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 \begin{minipage}{0.48\linewidth}
 \label{appendix:viz-Popularity}
 \includegraphics[scale=0.35]{"Popularity Comparison"}
-\captionof{figure}{There is no statistically significant correlation between popularity and any of the dimensions of $\widetilde{V}$}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{There is no statistically significant correlation between popularity and any of the dimensions of $\widetilde{V}$.}
 \end{minipage}
 \hfill % spread out row
 % Figure N+1
 \begin{minipage}{0.48\linewidth}
 \label{appendix:viz-Rating}
 \includegraphics[scale=0.35]{"Rating Comparison"}
-\captionof{figure}{The only real correlation we found was in rating along one of the dimensions o$\widetilde{V}$.}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{The only real correlation we found is seen in this plot, where rating is correlated with the horizontal dimensions of $\widetilde{V}$.}
 \end{minipage}
 % Figure N+2
 \begin{minipage}{0.48\linewidth}
 \label{appendix:viz-3Genre}
 \includegraphics[scale=0.35]{"3-Genre Comparison"}
-\captionof{figure}{Some here}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{Comparison of coordinates of all movies from the three genres, plotted separately in $\widetilde{V}$.}
 \end{minipage}
 \hfill % spread out row
 \begin{minipage}{0.48\linewidth}
 \label{appendix:viz-Genre}
 \includegraphics[scale=0.35]{"All Genre Comparison"}
-\captionof{figure}{Some here}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{Comparison of all genres. Note that due to genre-overlap, genres are draw in random order shown by the descending order in the legend.}
 \end{minipage}
 \begin{minipage}{0.48\linewidth}
 \label{appendix:viz-Trek}
 \includegraphics[scale=0.35]{"Series: Star Trek"}
-\captionof{figure}{Some here}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{Comparison of an example movie series. Star Trek was chosen because it was one of the largest sequels found.}
 \end{minipage}
 \hfill % spread out row
 \begin{minipage}{0.48\linewidth}
 \label{appendix:viz-1998}
 \includegraphics[scale=0.35]{"Year: 1998"}
-\captionof{figure}{Some here}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{All movies from 1998 are plotted here. No noticable difference from all movies noticed here either.}
 \end{minipage}
-\end{center}
+\end{center} 
 
 \pagebreak
+\subsection{Genre Distributions}
 \label{appendix:viz-Genres}
+% \noindent
 \includegraphics[scale=0.26]{"genres/Genre: Action"}
 \includegraphics[scale=0.26]{"genres/Genre: Adventure"}
 \includegraphics[scale=0.26]{"genres/Genre: Animation"} \\ \\
@@ -333,7 +383,8 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 \includegraphics[scale=0.26]{"genres/Genre: Thriller"}  
 \includegraphics[scale=0.26]{"genres/Genre: War"}
 \includegraphics[scale=0.26]{"genres/Genre: Western"}
-\captionof{figure}{Some here}
+\captionsetup{width=.85\linewidth}
+\captionof{figure}{All the individual genres all drawn above separately. Although it might be possible that some possess some clustered in $\widetilde{V}$, nothing is significant enough to draw any conclusions. }
 
 \end{appendices}
 
