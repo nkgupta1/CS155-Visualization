@@ -1,46 +1,46 @@
 error without regularization in training:
 first 2/3 training, last 1/3 test:
-, errOut = 0.643741, reg = 0.10000, eta = 0.0100, errIn = 0.267795
-, errOut = 0.651725, reg = 0.10000, eta = 0.0200, errIn = 0.252123
-, errOut = 0.661422, reg = 0.10000, eta = 0.0050, errIn = 0.286361
-, errOut = 0.666840, reg = 0.10000, eta = 0.0090, errIn = 0.269846
-, errOut = 0.670787, reg = 0.10000, eta = 0.0100, errIn = 0.250795
-, errOut = 0.676144, reg = 0.08000, eta = 0.0100, errIn = 0.220056
-, errOut = 0.676604, reg = 0.11000, eta = 0.0100, errIn = 0.283961
-, errOut = 0.677733, reg = 0.18000, eta = 0.0100, errIn = 0.387222
-, errOut = 0.678625, reg = 0.12000, eta = 0.0100, errIn = 0.301132
-, errOut = 0.679735, reg = 0.10000, eta = 0.0100, errIn = 0.281514
-, errOut = 0.682994, reg = 0.10000, eta = 0.0100, errIn = 0.262050
-, errOut = 0.683584, reg = 0.10000, eta = 0.0500, errIn = 0.284322
-, errOut = 0.683747, reg = 0.10000, eta = 0.0100, errIn = 0.259213
-, errOut = 0.686960, reg = 0.09000, eta = 0.0100, errIn = 0.261056
-, errOut = 0.692979, reg = 0.10000, eta = 0.0100, errIn = 0.258826
-, errOut = 0.714738, reg = 0.10000, eta = 0.0500, errIn = 0.284227
-, errOut = 0.731857, reg = 0.15000, eta = 0.0100, errIn = 0.362397
-, errOut = 0.751690, reg = 0.10000, eta = 0.1000, errIn = 0.388069
-, errOut = 0.752882, reg = 0.30000, eta = 0.0100, errIn = 0.468818
-, errOut = 0.753859, reg = 0.20000, eta = 0.0100, errIn = 0.420194
-, errOut = 0.761073, reg = 0.10000, eta = 0.1000, errIn = 0.394411
-, errOut = 0.821591, reg = 0.40000, eta = 0.0100, errIn = 0.516962
-, errOut = 0.852405, reg = 0.01000, eta = 0.0100, errIn = 0.152351
-, errOut = 0.854635, reg = 0.50000, eta = 0.0100, errIn = 0.560920
-, errOut = 0.918906, reg = 0.60000, eta = 0.0100, errIn = 0.620285
-, errOut = 0.925896, reg = 0.00010, eta = 0.0100, errIn = 0.142089
-, errOut = 0.931411, reg = 0.70000, eta = 0.0100, errIn = 0.681322
-, errOut = 0.935970, reg = 0.00100, eta = 0.0100, errIn = 0.148187
-, errOut = 0.943312, reg = 0.00000, eta = 0.0100, errIn = 0.142968
-, errOut = 1.066705, reg = 0.80000, eta = 0.0100, errIn = 0.769256
-, errOut = 1.250584, reg = 1.00000, eta = 0.0100, errIn = 0.956924
+errOut = 0.643741, reg = 0.10000, eta = 0.0100, errIn = 0.267795
+errOut = 0.651725, reg = 0.10000, eta = 0.0200, errIn = 0.252123
+errOut = 0.661422, reg = 0.10000, eta = 0.0050, errIn = 0.286361
+errOut = 0.666840, reg = 0.10000, eta = 0.0090, errIn = 0.269846
+errOut = 0.670787, reg = 0.10000, eta = 0.0100, errIn = 0.250795
+errOut = 0.676144, reg = 0.08000, eta = 0.0100, errIn = 0.220056
+errOut = 0.676604, reg = 0.11000, eta = 0.0100, errIn = 0.283961
+errOut = 0.677733, reg = 0.18000, eta = 0.0100, errIn = 0.387222
+errOut = 0.678625, reg = 0.12000, eta = 0.0100, errIn = 0.301132
+errOut = 0.679735, reg = 0.10000, eta = 0.0100, errIn = 0.281514
+errOut = 0.682994, reg = 0.10000, eta = 0.0100, errIn = 0.262050
+errOut = 0.683584, reg = 0.10000, eta = 0.0500, errIn = 0.284322
+errOut = 0.683747, reg = 0.10000, eta = 0.0100, errIn = 0.259213
+errOut = 0.686960, reg = 0.09000, eta = 0.0100, errIn = 0.261056
+errOut = 0.692979, reg = 0.10000, eta = 0.0100, errIn = 0.258826
+errOut = 0.714738, reg = 0.10000, eta = 0.0500, errIn = 0.284227
+errOut = 0.731857, reg = 0.15000, eta = 0.0100, errIn = 0.362397
+errOut = 0.751690, reg = 0.10000, eta = 0.1000, errIn = 0.388069
+errOut = 0.752882, reg = 0.30000, eta = 0.0100, errIn = 0.468818
+errOut = 0.753859, reg = 0.20000, eta = 0.0100, errIn = 0.420194
+errOut = 0.761073, reg = 0.10000, eta = 0.1000, errIn = 0.394411
+errOut = 0.821591, reg = 0.40000, eta = 0.0100, errIn = 0.516962
+errOut = 0.852405, reg = 0.01000, eta = 0.0100, errIn = 0.152351
+errOut = 0.854635, reg = 0.50000, eta = 0.0100, errIn = 0.560920
+errOut = 0.918906, reg = 0.60000, eta = 0.0100, errIn = 0.620285
+errOut = 0.925896, reg = 0.00010, eta = 0.0100, errIn = 0.142089
+errOut = 0.931411, reg = 0.70000, eta = 0.0100, errIn = 0.681322
+errOut = 0.935970, reg = 0.00100, eta = 0.0100, errIn = 0.148187
+errOut = 0.943312, reg = 0.00000, eta = 0.0100, errIn = 0.142968
+errOut = 1.066705, reg = 0.80000, eta = 0.0100, errIn = 0.769256
+errOut = 1.250584, reg = 1.00000, eta = 0.0100, errIn = 0.956924
 
 last 2/3 training, first 1/3 test:
-, errOut = 0.460330, reg = 0.10000, eta = 0.0100, errIn = 0.260879
-, errOut = 0.461616, reg = 0.10000, eta = 0.0050, errIn = 0.274322
-, errOut = 0.462888, reg = 0.10000, eta = 0.0090, errIn = 0.267259
-, errOut = 0.467803, reg = 0.10000, eta = 0.0200, errIn = 0.270230
-, errOut = 0.651215, reg = 0.01000, eta = 0.0090, errIn = 0.140637
-, errOut = 0.659732, reg = 0.01000, eta = 0.0100, errIn = 0.145086
-, errOut = 0.681749, reg = 0.01000, eta = 0.0050, errIn = 0.129947
-, errOut = 0.687374, reg = 0.01000, eta = 0.0200, errIn = 0.151102
+errOut = 0.460330, reg = 0.10000, eta = 0.0100, errIn = 0.260879
+errOut = 0.461616, reg = 0.10000, eta = 0.0050, errIn = 0.274322
+errOut = 0.462888, reg = 0.10000, eta = 0.0090, errIn = 0.267259
+errOut = 0.467803, reg = 0.10000, eta = 0.0200, errIn = 0.270230
+errOut = 0.651215, reg = 0.01000, eta = 0.0090, errIn = 0.140637
+errOut = 0.659732, reg = 0.01000, eta = 0.0100, errIn = 0.145086
+errOut = 0.681749, reg = 0.01000, eta = 0.0050, errIn = 0.129947
+errOut = 0.687374, reg = 0.01000, eta = 0.0200, errIn = 0.151102
 
 
 error with reg in training and mean removed:
