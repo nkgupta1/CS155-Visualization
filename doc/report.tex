@@ -59,13 +59,13 @@
 For each of the basic visualizations, we displayed data in (normalized) histogram format. This method was suggested by the project guidelines, and is also a very clear way of comparing frequency of ratings. This method is well-suited to visualizing data involving counts (i.e., no error bars, variation, etc.), which is what we are asked to do in this section. For Part 3, we provide two graphs; the top 10 highest rated movies (all of which have only been rated 5), and the top 10 highest rated movies with at least 50 ratings (these also happen to be the top 10 highest rated movies with at least 10 ratings, so the cutoff isn't too important).
 \smallskip
 \subsection*{What did you observe?}
-For Part 1, in which we visualized all ratings, we observed that 3's and 4's were present more frequently than would be expected in a uniform rating scheme ($\sim$ 0.2 frequency for each), 5's were present exactly as frequently as expected, and 1's and 2's were underrepresented.
+For Part 1, in which we visualized all ratings, we observed that 3's and 4's were present more frequently than would be expected in a uniform rating scheme ($\sim$ 0.2 frequency for each), 5's were present exactly as frequently as expected, and 1's and 2's were underrepresented (Fig. \ref{appendix:bv1}).
 
-For Part 2, in which we visualized the 10 most popular movies as determined from the number of rankings (Appendix \ref{appendix:popular}), we found that the most frequent ratings were 4's and 5's, both of which increased in frequency compared to the total dataset. The frequency of 1's, 2's, and 3's decreased.
+For Part 2, in which we visualized the 10 most popular movies as determined from the number of rankings (\ref{appendix:popular}, Fig. \ref{appendix:bv2}), we found that the most frequent ratings were 4's and 5's, both of which increased in frequency compared to the total dataset. The frequency of 1's, 2's, and 3's decreased.
 
-For Part 3, in which we visualized the 10 highest rated movies (Appendix \ref{appendix:highest}), we found (somewhat unsurprisingly) that all ratings were 5's. When we only considered movies with sufficiently many ratings (Appendix \ref{appendix:highestpruned}), we found that the most common rating was still 5, with 4's also highly represented. Lower ratings were uncommon, with around 12$\%$ of total ratings being 3's or below.
+For Part 3, in which we visualized the 10 highest rated movies (\ref{appendix:highest}, Fig. \ref{appendix:bv3}), we found (somewhat unsurprisingly) that all ratings were 5's. When we only considered movies with sufficiently many ratings (\ref{appendix:highestpruned}, Fig. \ref{appendix:bv4}), we found that the most common rating was still 5, with 4's also highly represented. Lower ratings were uncommon, with around 12$\%$ of total ratings being 3's or below.
 
-For Part 4, in which we considered ratings for particular genres, we examined Fantasy, Sci-Fi, and War movies. Sci-Fi movies followed the same general trend as overall ratings, while both Fantasy and War movies tended to be skewed towards high ratings.
+For Part 4, in which we considered ratings for particular genres, we examined Fantasy (Fig. \ref{appendix:bv5}), Sci-Fi (Fig. \ref{appendix:bv6}), and War movies (Fig. \ref{appendix:bv7}). Sci-Fi movies followed the same general trend as overall ratings, while both Fantasy and War movies tended to be skewed towards high ratings but otherwise similar.
 \smallskip
 \subsection*{Did the results match what you would expect to see?}
 For Part 1, the results matched my expectations. We would expect that better movies would be watched more, which would lead to higher ratings. 
@@ -184,20 +184,47 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 
 \pagebreak
 
-% \section{Basic Visualizations}
-% \label{appendix:basic}
-% \begin{figure}[h!]
-%   \caption{Histogram }
-%   \includegraphics[scale=0.5]{"All Ratings"}
-% \end{figure}
+\section{Basic Visualizations}
 
-% \includegraphics[scale=0.5]{"Ratings of 10 Most Popular Movies"} \\ \\
-% \includegraphics[scale=0.5]{"Ratings of 10 Highest-Rated Movies"}
-% \includegraphics[scale=0.5]{"Ratings of 10 Highest-Rated Movies (>= 50 Ratings)"} \\ \\
-% \includegraphics[scale=0.5]{"Ratings for Genres: Fantasy"}
-% \includegraphics[scale=0.5]{"Ratings for Genres: Sci-Fi"} \\ \\
-% \includegraphics[scale=0.5]{"Ratings for Genres: War"} \\
+\begin{center}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"All Ratings"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv1} Histogram of all ratings in dataset.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings of 10 Most Popular Movies"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv2} Histogram of 10 most popular movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings of 10 Highest-Rated Movies"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv3} Histogram of 10 highest-rated movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings of 10 Highest-Rated Movies (>= 50 Ratings)"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv4} Histogram of 10 highest-rated movies with over 50 ratings.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings for Genres: Fantasy"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv5} Histogram of ratings for fantasy movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings for Genres: Sci-Fi"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv6} Histogram of ratings for sci-fi movies.}
+  \end{minipage}
+  \begin{minipage}{0.49\linewidth}
+    \includegraphics[scale=0.5]{"Ratings for Genres: War"}
+    \captionsetup{width=.75\linewidth}
+    \captionof{figure}{\label{appendix:bv7} Histogram of ratings for war movies.}
+  \end{minipage}
+\end{center}
 
+\pagebreak
 \section{Grid Search Results}
 \label{appendix:gridsearch}
 \subsection{error without regularization in training (ordered by out of sample error)}
@@ -291,57 +318,57 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 \label{appendix:matrixvisual}
 \begin{center}
 % Figure N
-\begin{minipage}{0.48\linewidth}
-\includegraphics[width=\linewidth]{"Popularity Comparison"}
-\captionof{figure}{Some here}
-\end{minipage}
-\hfill % spread out row
-% Figure N+1
-\begin{minipage}{0.48\linewidth}
-\includegraphics[scale=0.35]{"Rating Comparison"}
-\captionof{figure}{Some here}
-\end{minipage}
-\vspace{10mm}
-% Figure N+2
-\begin{minipage}{0.48\linewidth}
-\includegraphics[scale=0.35]{"3-Genre Comparison"}
-\captionof{figure}{Some here}
-\end{minipage}
-\hfill % spread out row
-\begin{minipage}{0.48\linewidth}
-\includegraphics[scale=0.35]{"All Genre Comparison"}
-\captionof{figure}{Some here}
-\end{minipage}
-\begin{minipage}{0.48\linewidth}
-\includegraphics[scale=0.35]{"Series: Star Trek"}
-\captionof{figure}{Some here}
-\end{minipage}
-\hfill % spread out row
-\begin{minipage}{0.48\linewidth}
-\includegraphics[scale=0.35]{"Year: 1998"}
-\captionof{figure}{Some here}
-\end{minipage}
-\begin{minipage}{0.48\linewidth}
-\includegraphics[scale=0.26]{"genres/Genre: Action"}
-\includegraphics[scale=0.26]{"genres/Genre: Adventure"}
-\includegraphics[scale=0.26]{"genres/Genre: Animation"} 
-\includegraphics[scale=0.26]{"genres/Genre: Childrens"}  
-\includegraphics[scale=0.26]{"genres/Genre: Comedy"}
-\includegraphics[scale=0.26]{"genres/Genre: Crime"} \\ \\
-\includegraphics[scale=0.26]{"genres/Genre: Documentary"}
-\includegraphics[scale=0.26]{"genres/Genre: Drama"}  
-\includegraphics[scale=0.26]{"genres/Genre: Fantasy"} \\ \\
-\includegraphics[scale=0.26]{"genres/Genre: Film-Noir"}
-\includegraphics[scale=0.26]{"genres/Genre: Horror"}
-\includegraphics[scale=0.26]{"genres/Genre: Musical"} \\ \\
-\includegraphics[scale=0.26]{"genres/Genre: Mystery"}
-\includegraphics[scale=0.26]{"genres/Genre: Romance"}
-\includegraphics[scale=0.26]{"genres/Genre: Sci-Fi"} \\ \\
-\includegraphics[scale=0.26]{"genres/Genre: Thriller"}  
-\includegraphics[scale=0.26]{"genres/Genre: War"}
-\includegraphics[scale=0.26]{"genres/Genre: Western"}
-\captionof{figure}{Some here}
-\end{minipage}
+% \begin{minipage}{0.48\linewidth}
+% \includegraphics[width=\linewidth]{"Popularity Comparison"}
+% \captionof{figure}{Some here}
+% \end{minipage}
+% \hfill % spread out row
+% % Figure N+1
+% \begin{minipage}{0.48\linewidth}
+% \includegraphics[scale=0.35]{"Rating Comparison"}
+% \captionof{figure}{Some here}
+% \end{minipage}
+% \vspace{10mm}
+% % Figure N+2
+% \begin{minipage}{0.48\linewidth}
+% \includegraphics[scale=0.35]{"3-Genre Comparison"}
+% \captionof{figure}{Some here}
+% \end{minipage}
+% \hfill % spread out row
+% \begin{minipage}{0.48\linewidth}
+% \includegraphics[scale=0.35]{"All Genre Comparison"}
+% \captionof{figure}{Some here}
+% \end{minipage}
+% \begin{minipage}{0.48\linewidth}
+% \includegraphics[scale=0.35]{"Series: Star Trek"}
+% \captionof{figure}{Some here}
+% \end{minipage}
+% \hfill % spread out row
+% \begin{minipage}{0.48\linewidth}
+% \includegraphics[scale=0.35]{"Year: 1998"}
+% \captionof{figure}{Some here}
+% \end{minipage}
+% \begin{minipage}{0.48\linewidth}
+% \includegraphics[scale=0.26]{"genres/Genre: Action"}
+% \includegraphics[scale=0.26]{"genres/Genre: Adventure"}
+% \includegraphics[scale=0.26]{"genres/Genre: Animation"} 
+% \includegraphics[scale=0.26]{"genres/Genre: Childrens"}  
+% \includegraphics[scale=0.26]{"genres/Genre: Comedy"}
+% \includegraphics[scale=0.26]{"genres/Genre: Crime"} \\ \\
+% \includegraphics[scale=0.26]{"genres/Genre: Documentary"}
+% \includegraphics[scale=0.26]{"genres/Genre: Drama"}  
+% \includegraphics[scale=0.26]{"genres/Genre: Fantasy"} \\ \\
+% \includegraphics[scale=0.26]{"genres/Genre: Film-Noir"}
+% \includegraphics[scale=0.26]{"genres/Genre: Horror"}
+% \includegraphics[scale=0.26]{"genres/Genre: Musical"} \\ \\
+% \includegraphics[scale=0.26]{"genres/Genre: Mystery"}
+% \includegraphics[scale=0.26]{"genres/Genre: Romance"}
+% \includegraphics[scale=0.26]{"genres/Genre: Sci-Fi"} \\ \\
+% \includegraphics[scale=0.26]{"genres/Genre: Thriller"}  
+% \includegraphics[scale=0.26]{"genres/Genre: War"}
+% \includegraphics[scale=0.26]{"genres/Genre: Western"}
+% \captionof{figure}{Some here}
+% \end{minipage}
 \end{center}
 
 \noindent
