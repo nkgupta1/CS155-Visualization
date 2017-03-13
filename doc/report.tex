@@ -95,7 +95,7 @@ They are very similar. This is not unexpected, as the Fantasy, Sci-Fi, and War g
 For the ways we adjusted $\eta,\lambda$, please see Appendix \ref{appendix:gridsearch}. How we adjusted $\epsilon$ is described in the next subsection*.
 
 \subsection*{Justify your choices for the parameters and stopping criteria}
-We grid searched for values of the $\eta,\lambda$ that would provide the best test error. We broke up the data into a training set including $\frac{2}{3}$ of the data and a test set containing the remaining $\frac{1}{3}$ of the data. Please see Appendix \ref{appendix:gridsearch} for results. In addition, we tried various stopping criteria and ended up settling on $\epsilon=0.003$ as the one that gave the best test error. In order to determine this, we tried different orders of magnitude (0.0001, 0.001, 0.01, 0.1) for the value and after finding the best one (0.001), increased the resolution of the search (0.001, 0.002, 0.003, 0.004, 0.005) ending up settling on a specific value (0.003). 
+We grid searched for values of the $\eta,\lambda$ that would provide the best test error. We broke up the data into a training set including $\frac{2}{3}$ of the data and a test set containing the remaining $\frac{1}{3}$ of the data. Please see Appendix \ref{appendix:gridsearch} for results. In addition, we tried various stopping criteria and ended up settling on $\epsilon=0.003$ as the one that gave the best test error. In order to determine this, we tried different orders of magnitude (0.0001, 0.001, 0.01, 0.1) for the value and after finding the best one (0.001), increased the resolution of the search (0.001, 0.002, 0.003, 0.004, 0.005) ending up settling on a specific value (0.003). One important note is that we chose our parameters such that the model would generalize best. In other words, we chose parameters to decrease out of sample error. However, this came at a cost of increasing in sample error but as this is a predictive model, we thought that out of sample error is more important than in sample error.
 
 \subsection*{Did you make any other significant modifications or additions}
 We tried various methods of training:
@@ -318,78 +318,58 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 \label{appendix:matrixvisual}
 \begin{center}
 % Figure N
-% \begin{minipage}{0.48\linewidth}
-% \includegraphics[width=\linewidth]{"Popularity Comparison"}
-% \captionof{figure}{Some here}
-% \end{minipage}
-% \hfill % spread out row
-% % Figure N+1
-% \begin{minipage}{0.48\linewidth}
-% \includegraphics[scale=0.35]{"Rating Comparison"}
-% \captionof{figure}{Some here}
-% \end{minipage}
-% \vspace{10mm}
-% % Figure N+2
-% \begin{minipage}{0.48\linewidth}
-% \includegraphics[scale=0.35]{"3-Genre Comparison"}
-% \captionof{figure}{Some here}
-% \end{minipage}
-% \hfill % spread out row
-% \begin{minipage}{0.48\linewidth}
-% \includegraphics[scale=0.35]{"All Genre Comparison"}
-% \captionof{figure}{Some here}
-% \end{minipage}
-% \begin{minipage}{0.48\linewidth}
-% \includegraphics[scale=0.35]{"Series: Star Trek"}
-% \captionof{figure}{Some here}
-% \end{minipage}
-% \hfill % spread out row
-% \begin{minipage}{0.48\linewidth}
-% \includegraphics[scale=0.35]{"Year: 1998"}
-% \captionof{figure}{Some here}
-% \end{minipage}
-% \begin{minipage}{0.48\linewidth}
-% \includegraphics[scale=0.26]{"genres/Genre: Action"}
-% \includegraphics[scale=0.26]{"genres/Genre: Adventure"}
-% \includegraphics[scale=0.26]{"genres/Genre: Animation"} 
-% \includegraphics[scale=0.26]{"genres/Genre: Childrens"}  
-% \includegraphics[scale=0.26]{"genres/Genre: Comedy"}
-% \includegraphics[scale=0.26]{"genres/Genre: Crime"} \\ \\
-% \includegraphics[scale=0.26]{"genres/Genre: Documentary"}
-% \includegraphics[scale=0.26]{"genres/Genre: Drama"}  
-% \includegraphics[scale=0.26]{"genres/Genre: Fantasy"} \\ \\
-% \includegraphics[scale=0.26]{"genres/Genre: Film-Noir"}
-% \includegraphics[scale=0.26]{"genres/Genre: Horror"}
-% \includegraphics[scale=0.26]{"genres/Genre: Musical"} \\ \\
-% \includegraphics[scale=0.26]{"genres/Genre: Mystery"}
-% \includegraphics[scale=0.26]{"genres/Genre: Romance"}
-% \includegraphics[scale=0.26]{"genres/Genre: Sci-Fi"} \\ \\
-% \includegraphics[scale=0.26]{"genres/Genre: Thriller"}  
-% \includegraphics[scale=0.26]{"genres/Genre: War"}
-% \includegraphics[scale=0.26]{"genres/Genre: Western"}
-% \captionof{figure}{Some here}
-% \end{minipage}
-\end{center}
+\begin{minipage}{0.48\linewidth}
+\includegraphics[scale=0.35]{"Popularity Comparison"}
+\captionof{figure}{Some here}
+\end{minipage}
+\hfill % spread out row
+% Figure N+1
+\begin{minipage}{0.48\linewidth}
+\includegraphics[scale=0.35]{"Rating Comparison"}
+\captionof{figure}{Some here}
+\end{minipage}
+% Figure N+2
+\begin{minipage}{0.48\linewidth}
+\includegraphics[scale=0.35]{"3-Genre Comparison"}
+\captionof{figure}{Some here}
+\end{minipage}
+\hfill % spread out row
+\begin{minipage}{0.48\linewidth}
+\includegraphics[scale=0.35]{"All Genre Comparison"}
+\captionof{figure}{Some here}
+\end{minipage}
+\begin{minipage}{0.48\linewidth}
+\includegraphics[scale=0.35]{"Series: Star Trek"}
+\captionof{figure}{Some here}
+\end{minipage}
+\hfill % spread out row
+\begin{minipage}{0.48\linewidth}
+\includegraphics[scale=0.35]{"Year: 1998"}
+\captionof{figure}{Some here}
+\end{minipage}
+\end{center} 
 
-\noindent
-%\includegraphics[scale=0.26]{"genres/Genre: Action"}
-%\includegraphics[scale=0.26]{"genres/Genre: Adventure"}
-%\includegraphics[scale=0.26]{"genres/Genre: Animation"} \\ \\
-%\includegraphics[scale=0.26]{"genres/Genre: Childrens"}  
-%\includegraphics[scale=0.26]{"genres/Genre: Comedy"}
-%\includegraphics[scale=0.26]{"genres/Genre: Crime"} \\ \\
-%\includegraphics[scale=0.26]{"genres/Genre: Documentary"}
-%\includegraphics[scale=0.26]{"genres/Genre: Drama"}  
-%\includegraphics[scale=0.26]{"genres/Genre: Fantasy"} \\ \\
-%\includegraphics[scale=0.26]{"genres/Genre: Film-Noir"}
-%\includegraphics[scale=0.26]{"genres/Genre: Horror"}
-%\includegraphics[scale=0.26]{"genres/Genre: Musical"} \\ \\
-%\includegraphics[scale=0.26]{"genres/Genre: Mystery"}
-%\includegraphics[scale=0.26]{"genres/Genre: Romance"}
-%\includegraphics[scale=0.26]{"genres/Genre: Sci-Fi"} \\ \\
-%\includegraphics[scale=0.26]{"genres/Genre: Thriller"}  
-%\includegraphics[scale=0.26]{"genres/Genre: War"}
-%\includegraphics[scale=0.26]{"genres/Genre: Western"}
+\pagebreak 
+\subsection{Genre Distributions}
+% \noindent
+\includegraphics[scale=0.26]{"genres/Genre: Action"}
+\includegraphics[scale=0.26]{"genres/Genre: Adventure"}
+\includegraphics[scale=0.26]{"genres/Genre: Animation"} \\ \\
+\includegraphics[scale=0.26]{"genres/Genre: Childrens"}  
+\includegraphics[scale=0.26]{"genres/Genre: Comedy"}
+\includegraphics[scale=0.26]{"genres/Genre: Crime"} \\ \\
+\includegraphics[scale=0.26]{"genres/Genre: Documentary"}
+\includegraphics[scale=0.26]{"genres/Genre: Drama"}  
+\includegraphics[scale=0.26]{"genres/Genre: Fantasy"} \\ \\
+\includegraphics[scale=0.26]{"genres/Genre: Film-Noir"}
+\includegraphics[scale=0.26]{"genres/Genre: Horror"}
+\includegraphics[scale=0.26]{"genres/Genre: Musical"} \\ \\
+\includegraphics[scale=0.26]{"genres/Genre: Mystery"}
+\includegraphics[scale=0.26]{"genres/Genre: Romance"}
+\includegraphics[scale=0.26]{"genres/Genre: Sci-Fi"} \\ \\
+\includegraphics[scale=0.26]{"genres/Genre: Thriller"}  
+\includegraphics[scale=0.26]{"genres/Genre: War"}
+\includegraphics[scale=0.26]{"genres/Genre: Western"}
 
 \end{appendices}
 
