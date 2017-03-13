@@ -10,7 +10,7 @@
 \usepackage{mdwlist}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{geometry}
-\usepackage{titlesec}
+% \usepackage{titlesec}
 \geometry{margin=1in}
 \geometry{headheight=2in}
 \geometry{top=2in}
@@ -46,10 +46,10 @@
 \DeclareMathOperator{\argmax}{arg\,max}
 
 % do not number subsection and below
-\setcounter{secnumdepth}{2}
+\setcounter{secnumdepth}{1}
 
 % custom format subsection
-\titleformat*{\subsection}{\large\bfseries}
+% \titleformat*{\subsection}{\large\bfseries}
 
 % set up the \question shortcut
 \newcounter{question}[section]
@@ -64,9 +64,9 @@
     \ifthenelse{\equal{#1}{}}{}{ [#1 points]:}} }
   {\par\addvspace{\baselineskip}}
 
-\titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
-\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
-\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+% \titlespacing\section{0pt}{12pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
+% \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+% \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 
 
 \newenvironment{hint}[1][]
