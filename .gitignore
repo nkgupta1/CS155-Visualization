@@ -5,6 +5,7 @@ report.fls
 report.log
 report.out
 report.synctex.gz
+report.pdf
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
