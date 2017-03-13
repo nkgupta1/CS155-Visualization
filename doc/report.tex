@@ -57,11 +57,11 @@
 For each of the basic visualizations, we displayed data in (normalized) histogram format. This method was suggested by the project guidelines, and is also a very clear way of comparing frequency of ratings. This method is well-suited to visualizing data involving counts (i.e., no error bars, variation, etc.), which is what we are asked to do in this section. For Part 3, we provide two graphs; the top 10 highest rated movies (all of which have only been rated 5), and the top 10 highest rated movies with at least 50 ratings (these also happen to be the top 10 highest rated movies with at least 10 ratings, so the cutoff isn't too important).
 \smallskip
 \subsection{What did you observe?}
-For Part 1, in which we visualized all ratings, we observed that 3's and 4's were present more frequently than would be expected in a uniform rating scheme ($~$0.2 frequency for each), 5's were present exactly as frequently as expected, and 1's and 2's were underrepresented.
+For Part 1, in which we visualized all ratings, we observed that 3's and 4's were present more frequently than would be expected in a uniform rating scheme ($\sim$ 0.2 frequency for each), 5's were present exactly as frequently as expected, and 1's and 2's were underrepresented.
 
-For Part 2, in which we visualized the 10 most popular movies (as determined from the number of rankings), we found that the most frequent ratings were 4's and 5's, both of which increased in frequency compared to the total dataset. The frequency of 1's, 2's, and 3's decreased.
+For Part 2, in which we visualized the 10 most popular movies as determined from the number of rankings (Appendix \ref{appendix:popular}), we found that the most frequent ratings were 4's and 5's, both of which increased in frequency compared to the total dataset. The frequency of 1's, 2's, and 3's decreased.
 
-For Part 3, in which we visualized the 10 highest rated movies, we found (somewhat unsurprisingly) that all ratings were 5's. When we only considered movies with sufficiently many ratings, we found that the most common rating was still 5, with 4's also highly represented. Lower ratings were uncommon, with around 12$\%$ of total ratings being 3's or below.
+For Part 3, in which we visualized the 10 highest rated movies (Appendix \ref{appendix:highest}), we found (somewhat unsurprisingly) that all ratings were 5's. When we only considered movies with sufficiently many ratings (Appendix \ref{appendix:highestpruned}), we found that the most common rating was still 5, with 4's also highly represented. Lower ratings were uncommon, with around 12$\%$ of total ratings being 3's or below.
 
 For Part 4, in which we considered ratings for particular genres, we examined Fantasy, Sci-Fi, and War movies. Sci-Fi movies followed the same general trend as overall ratings, while both Fantasy and War movies tended to be skewed towards high ratings.
 \smallskip
@@ -131,11 +131,56 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
 \subsection{Did your visualizations help you to better understand the MovieLens dataset?}
 
 \pagebreak
-\section{Appendix A - Basic Visualizations}
-\medskip
-
 \begin{appendices}
 
+\section{Basic Visualizations Data}
+\label{appendix:popular}
+
+\noindent Most Popular Movies \\
+\texttt{
+  Star Wars (1977) \\
+  Contact (1997) \\
+  Fargo (1996) \\
+  Return of the Jedi (1983) \\
+  Liar Liar (1997) \\
+  "English Patient, The (1996)" \\
+  Scream (1996) \\
+  Toy Story (1995) \\
+  Air Force One (1997) \\
+  Independence Day (ID4)  (1996) \\
+}
+
+\label{appendix:highest}
+\noindent Highest Ratings (All Movies) \\
+\texttt{
+  "Great Day in Harlem, A (1994)" \\
+  They Made Me a Criminal (1939) \\
+  Prefontaine (1997) \\
+  Marlene Dietrich: Shadow and Light (1996) \\
+  Star Kid (1997) \\
+  "Saint of Fort Washington, The (1993)" \\
+  Santa with Muscles (1996) \\
+  Aiqing wansui (1994) \\
+  Someone Else's America (1995) \\
+  Entertaining Angels: The Dorothy Day Story (1996) \\
+}
+
+\label{appendix:highestpruned}
+\noindent Highest Ratings ($\geq$ 50 Ratings) \\
+\texttt{
+  "Close Shave, A (1995)" \\
+  Schindler's List (1993) \\
+  "Wrong Trousers, The (1993)" \\
+  Casablanca (1942) \\
+  Wallace \& Gromit: The Best of Aardman Animation (1996) \\
+  "Shawshank Redemption, The (1994)" \\
+  Rear Window (1954) \\
+  "Usual Suspects, The (1995)" \\
+  Star Wars (1977) \\
+  12 Angry Men (1957) \\
+}
+
+\pagebreak
 \section{Grid Search Results}
 \label{appendix:gridsearch}
 \subsection{error without regularization in training (ordered by out of sample error)}
@@ -222,7 +267,7 @@ Also, before we implemented bias and bias regularization in the matrix factoriza
   errOut = 0.594936, reg = 0.01000, eta = 0.0050, errIn = 0.150427 \\
   errOut = 0.621251, reg = 0.01000, eta = 0.0100, errIn = 0.136140 \\
   errOut = 0.798689, reg = 0.01000, eta = 0.1000, errIn = 0.207856
-  }
+}
 
 
 \section{Matrix Factorization Visualizations}
