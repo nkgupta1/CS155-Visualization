@@ -110,7 +110,7 @@ Each of these changes progressively made the out of sample error better.
 \section{Matrix Factorization Visualization}
 \medskip
 \subsection*{What did you observe?}
-We observed a significant correlation in the rating of a movie and one of the 2 dimensions of $\widetilde{V}$ (Appendix \ref{appendix:viz-Rating}). Although there was no discernible correlation between movie genre and either of the dimensions, we noticed that movies belonging from the same series (like sequels of Star Trek movies) appeared to be clustered closer to together compared to random noise (Appendix \ref{appendix:viz-Trek}). We also attempted to find correlations between popularity and dating of the movies and the two dimensions. The release date of a movie appeared to have none (Appendix \ref{appendix:viz-1998}). 
+We observed a significant correlation in the rating of a movie and one of the 2 dimensions of $\widetilde{V}$ (Appendix \ref{appendix:viz-Rating}). Although there was no discernible correlation between movie genre and either of the dimensions, we noticed that movies belonging from the same series (like sequels of Star Trek movies) appeared to be clustered closer to together compared to random noise (Appendix \ref{appendix:viz-Trek}). We also attempted to find correlations between popularity and dating of the movies and the two dimensions. The release date of a movie appeared to have none (Appendix \ref{appendix:viz-1998}). Note that for many of these observations, unless otherwise specified, we only plotted coordinates for movies with a minimum number of ratings (usually 50). We found that this helped see potential correlations more clearly because the ones with more ratings would express a stronger correlation.
 
 \subsection*{How do the ratings of the best movies compare to those of the most popular movies}
 Popularity appeared to have a slight correlation in the same dimension and direction as rating in $\widetilde{V}$ (Appendix \ref{appendix:viz-Popularity}). We believe this is because popularity is inherently correlated with the rating of a movie, meaning that more popular movies tend to have higher ratings, and since the correlation is stronger with $\widetilde{V}$ and rating, we believe the popularity correlation is a side effect of that.
@@ -124,13 +124,17 @@ We expected to see a stronger (or any) correlation between the 2 dimensions of $
 \subsection{Any other comparisons/observations}
 While there may be correlations between features in the movies given by $\widetilde{V}$, they go beyond genres and dating, and have esoteric meaning. More detailed observations on individual genres can be seen in  (Appendix \ref{appendix:viz-Genres}).
 
-Also, before we implemented bias and bias regularization in the matrix factorization, the values of $V$ for the movies were in the positive quadrant, the correlation between popularity and rating appeared to be stronger, and $E_{out}$ was higher. However, after bias, the data became more centered in both dimensions.
+Also, before we implemented bias and bias regularization in the matrix factorization, the values of $\widetilde{V}$ for the movies were in the positive quadrant, the correlation between popularity and rating appeared to be stronger, and $E_{out}$ was higher. However, after bias, the data became more centered in both dimensions.
 
 
 \section{Conclusion}
 \medskip
 \subsection*{Briefly summarize your main observations}
+We found that we could optimize the parameters of our model consistently and effectively to minimize $E_{out}$.  We also found that adding bias and bias regularization improved our $E_{out}$. That being said, we $E_{out}$ was significantly high and was always significantly above $E_{in}$ despite regularization. However, given the amount of data and how much true correlation we would expected to exist between users and movies, we believe the produced model were sufficient for visualization analysis.
 \subsection*{Did your visualizations help you to better understand the MovieLens dataset?}
+The observations from the basic visualization part were expected, but they also helped us in understanding the results from the matrix factorization visualization. For example, we noticed that popularity and ratings were highly correlated, which explained why we saw, at least initially, a strong popularity correlation between popularity and the coordinates in $\widetilde{V}$.
+
+There was no observable trend we could find from the matrix factorization visualization and potential features such as genres, time, sequels, popularity, etc. Instead, the prediction of rating was more dependent on the average rating for a movie, which we would expect at minimum. There may exist deeper patterns that were found in the movies but are indiscernible from the visualizations, but, overall, we did not see the amount of correlation that we had expected.
 
 \pagebreak
 \begin{appendices}
